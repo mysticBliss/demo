@@ -1,0 +1,89 @@
+{% extends 'admin/layout.html' %}
+
+{% block body %}
+{% from 'admin/includes/_formhelpers.html' import render_field %}
+
+                        <div class="col-md-9">
+                                  <div class="card">
+                                      <div class="card-header">
+                                          <h4 class="card-title">{{ title }}</h4>
+																					<hr>
+																					{% with messages = get_flashed_messages() %}
+																	        {% if messages %}
+																	        <ul>
+																	            {% for message in messages %}
+																	            <li>{{ message }}</li>
+																	            {% endfor %}
+																	        </ul>
+																	        {% endif %}
+																	        {% endwith %}
+																	     </div>
+																			<!--  Row 1-->
+                                      <div class="card-body">
+                                        <form action = "" method = "POST" enctype = "multipart/form-data">
+                                          {{ form.csrf_token }}
+                                          {{ form.hidden_tag() }}
+
+                                          <div class="row">
+                                              <div class="col-md-3">
+                                                  <div class="form-group">
+                                                    {{render_field(form.room_name ,class_="form-control")}}
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-3">
+                                                  <div class="form-group">
+                                                    {{render_field(form.room_type,class_="form-control")}}
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                  {{render_field(form.room_price ,class_="form-control")}}
+                                                </div>
+                                              </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                  {{render_field(form.room_desc ,class_="form-control")}}
+                                                </div>
+                                            </div>
+
+
+                                      </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                  {{render_field(form.room_len ,class_="form-control")}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                  {{render_field(form.room_brd,class_="form-control")}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                  {{render_field(form.room_capacity,class_="form-control")}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                              <div class="form-group">
+                                                {{render_field(form.total_rooms ,class_="form-control")}}
+                                              </div>
+                                            </div>
+
+                                      </div>
+                                      <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                      <div class="clearfix"></div>
+                                    </form>
+                                      </div>
+                                  </div>
+                              </div>
+
+
+
+
+
+{% endblock %}

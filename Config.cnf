@@ -1,0 +1,14 @@
+[FILEPATHS]
+logFolder = tst
+
+[WEB]
+baseURL = txt
+port = 5000
+host = lvh.me
+id = 5c013a9d2ccb025bd4d8295a
+
+
+[STORE]
+serviceUsername = app
+servicePassword = 6QqdEn
+serviceDB = t2k

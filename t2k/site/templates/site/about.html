@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<html>
+
+{% include 'site/includes/_head.html' %}
+
+
+<body>
+
+    <!--[if lte IE 8]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+    <![endif]-->
+
+     <div class="layer"></div>
+    <!-- Mobile menu overlay mask -->
+
+    <div id="preloader">
+        <div data-loader="circle-side"></div>
+    </div><!-- End Preload -->
+
+    <!-- Header ================================================== -->
+    {% include 'site/includes/_header.html' %}
+    <!-- End Header =============================================== -->
+
+    <!-- SubHeader =============================================== -->
+    <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="{{ url_for('.static', filename='img/sub_header_short_2.jpg') }}" data-natural-width="1400" data-natural-height="350">
+        <div id="subheader">
+            <h1>Our Wonderfull Rooms</h1>
+    </div><!-- End subheader -->
+    </section><!-- End section -->
+    <!-- End SubHeader ============================================ -->
+
+    <div class="container margin_60">
+      <h2 class="main_title">Welcome to {{ g.hotelname }} <em> </em> <span>elegant 4-star boutique hotel</span></h2>
+        <p class="lead styled">
+            {{ g.long_desc }}</p>
+
+    	<div class="row about">
+                <div class="col-md-5 col-sm-6 col-md-offset-1">
+                   <h3>Connected to Roots</h3>
+                        <p>
+                          Established in 1990, <strong>Rose International </strong> is in the field of manufacturing
+and exporting Kashmiri Handicrafts and Fashion accessories since more than 26
+years owning to be a well-known Export House now.
+                        </p>
+                </div>
+                <div class="col-md-4 col-sm-6 col-md-offset-1">
+                <img src="{{ url_for('.static', filename='img/about_1.jpg') }}" alt="" class="img-responsive styled">
+                </div>
+      </div><!-- End row -->
+ 		<div class="divider hidden-xs"></div>
+       <div class="row about" >
+            <div class="col-md-5 col-sm-6 col-md-offset-1 col-md-push-5">
+                 <h3>Committed Complainces</h3>
+                        <p>
+                          Our products are designed by master craftsmen with decades
+of experience and every product is further selected and inspired by experts to
+ensure the finest quality. While our artisans and master craftsmen are busy reviving
+ancient designs, textures and weaves; our aim is to showcase their work on the
+international market as well as empower and enrich the lives of these artisans.
+                        </p>
+            </div>
+            <div class="col-md-4 col-sm-6 col-md-offset-1 col-md-pull-6">
+               <img src="{{ url_for('.static', filename='img/about_2.jpg') }}" alt="" class="img-responsive styled">
+            </div>
+        </div><!-- End row -->
+      <div class="divider hidden-xs"></div>
+        <div class="row about">
+                <div class="col-md-5 col-sm-6 col-md-offset-1">
+                   <h3>Shared Responsiblities</h3>
+                        <p>
+                          Rose International, lately, through several transformative transactions, have
+expanded the scope of its business. While we remain committed to the
+Handicrafts industry, we enhanced our diversified portfolio of assets by making
+a strategic entrance into the Real Estate, Hospitality and Retail sector. At present
+the organisation’s operation generate direct <strong>employment opportunities</strong> to nearly
+250 persons and indirect employment opportunities for over 2,000 persons.
+                        </p>
+                        <ul class="list_ok">
+                        	<li>Charity</li>
+                            <li>Awards</li>
+                             <li>Resposniblities</li>
+                        </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 col-md-offset-1">
+                <img src="{{ url_for('.static', filename='img/about_3.jpg') }}" alt="" class="img-responsive styled">
+                </div>
+      </div><!-- End row -->
+    </div><!-- End container -->
+
+    <div class="container_styled_1">
+    	<div class="container margin_60">
+        <h3 class="main_title">General facilities<span>Ad principes scriptorem duo, te omnium gubergren eam.</span></h3>
+        	<div class="row">
+            	<div class="col-md-4 col-sm-4">
+                	<div class="box_feat">
+                    	<i class="icon_set_1_icon-8"></i>
+                        <h4>Patio garden</h4>
+                        <p>Ut postea legendos vim, usu an reque novum inimicus, cum aperiri molestiae splendide ea. Ad nam modus iudico rationibus.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                <div class="box_feat">
+                    	<i class="icon_set_1_icon-27"></i>
+                        <h4>Parking</h4>
+                        <p>Ut postea legendos vim, usu an reque novum inimicus, cum aperiri molestiae splendide ea. Ad nam modus iudico rationibus.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                <div class="box_feat">
+                    	<i class="icon_set_1_icon-14"></i>
+                        <h4>Room service</h4>
+                        <p>Ut postea legendos vim, usu an reque novum inimicus, cum aperiri molestiae splendide ea. Ad nam modus iudico rationibus.</p>
+                    </div>
+                </div>
+            </div><!-- End row -->
+            <div class="row">
+            	<div class="col-md-4 col-sm-4">
+                	<div class="box_feat">
+                    	<i class="icon_set_1_icon-22"></i>
+                        <h4>Pet allowed</h4>
+                        <p>Ut postea legendos vim, usu an reque novum inimicus, cum aperiri molestiae splendide ea. Ad nam modus iudico rationibus.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                <div class="box_feat">
+                    	<i class="icon_set_2_icon-103"></i>
+                        <h4>Loundry service</h4>
+                        <p>Ut postea legendos vim, usu an reque novum inimicus, cum aperiri molestiae splendide ea. Ad nam modus iudico rationibus.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                <div class="box_feat">
+                    	<i class="icon_set_1_icon-13"></i>
+                        <h4>Disable</h4>
+                        <p>Ut postea legendos vim, usu an reque novum inimicus, cum aperiri molestiae splendide ea. Ad nam modus iudico rationibus.</p>
+                    </div>
+                </div>
+            </div><!-- End row -->
+        </div><!-- End container -->
+    </div><!-- End container_styled_1 -->
+
+    <div class="grid">
+		<ul class="magnific-gallery" style="margin-bottom:-5px;">
+						<li>
+							<figure>
+								<img src="{{ url_for('.static', filename='img/gallery/pic_1.jpg') }}" alt="">
+								<figcaption>
+								<div class="caption-content">
+									<a href="{{ url_for('.static', filename='img/gallery/large/pic_1.jpg') }}" title="Photo title">
+										<i class="icon_set_1_icon-32"></i>
+										<p>Your caption</p>
+									</a>
+								</div>
+								</figcaption>
+							</figure>
+						</li>
+						<li>
+							<figure>
+								<img src="{{ url_for('.static', filename='img/gallery/pic_2.jpg') }}" alt="">
+								<figcaption>
+								<div class="caption-content">
+									<a href="{{ url_for('.static', filename='img/gallery/large/pic_2.jpg') }}" title="Photo title">
+										<i class="icon_set_1_icon-32"></i>
+										<p>Your caption</p>
+									</a>
+								</div>
+								</figcaption>
+							</figure>
+						</li>
+						<li>
+							<figure>
+								<img src="{{ url_for('.static', filename='img/gallery/pic_3.jpg') }}" alt="">
+								<figcaption>
+								<div class="caption-content">
+									<a href="{{ url_for('.static', filename='img/gallery/large/pic_3.jpg') }}" title="Photo title">
+										<i class="icon_set_1_icon-32"></i>
+										<p>Your caption</p>
+									</a>
+								</div>
+								</figcaption>
+							</figure>
+						</li>
+						<li>
+							<figure>
+								<img src="{{ url_for('.static', filename='img/gallery/pic_4.jpg') }}" alt="">
+								<figcaption>
+								<div class="caption-content">
+									<a href="{{ url_for('.static', filename='img/gallery/large/pic_3.jpg') }}" title="Photo title">
+										<i class="icon_set_1_icon-32"></i>
+										<p>Your caption</p>
+									</a>
+								</div>
+								</figcaption>
+							</figure>
+						</li>
+					</ul>
+		</div>
+
+
+       {% include 'site/includes/_footer.html' %}
+
+<div id="toTop"></div><!-- Back to top button -->
+
+
+<!-- COMMON SCRIPTS -->
+<script src="{{ url_for('.static', filename='js/jquery-1.11.2.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/common_scripts_min.js') }}"></script>
+<script src="{{ url_for('.static', filename='assets/validate.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/functions.js') }}"></script>
+
+</body>
+</html>

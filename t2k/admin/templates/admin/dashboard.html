@@ -1,0 +1,107 @@
+{% extends 'admin/layout.html' %}
+
+{% block body %}
+{% from 'admin/includes/_formhelpers.html' import render_field,render_radio_field,render_gmap_field %}
+
+                              <div class="col-md-10">
+                                  <div class="card">
+                                      <div class="card-header">
+                                          <h4 class="card-title">{{ title }}</h4>
+																					<hr>
+																					{% with messages = get_flashed_messages() %}
+																	        {% if messages %}
+																	        <ul>
+																	            {% for message in messages %}
+																	            <li>{{ message }}</li>
+																	            {% endfor %}
+																	        </ul>
+																	        {% endif %}
+																	        {% endwith %}
+																	                                      </div>
+																			<!--  Row 1-->
+                                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="card ">
+                                  <div class="card-header ">
+                                      <h4 class="card-title">Email Statistics</h4>
+                                      <p class="card-category">Last Campaign Performance</p>
+                                  </div>
+                                  <div class="card-body ">
+                                      <div id="chartPreferences" class="ct-chart ct-perfect-fourth"><svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%" class="ct-chart-pie" style="width: 100%; height: 100%;"><g class="ct-series ct-series-c"><path d="M145.5,5A117.5,117.5,0,0,0,70.287,32.227L145.5,122.5Z" class="ct-slice-pie" ct:value="11"></path></g><g class="ct-series ct-series-b"><path d="M70.603,31.965A117.5,117.5,0,0,0,123.886,237.995L145.5,122.5Z" class="ct-slice-pie" ct:value="36"></path></g><g class="ct-series ct-series-a"><path d="M123.483,237.919A117.5,117.5,0,1,0,145.5,5L145.5,122.5Z" class="ct-slice-pie" ct:value="53"></path></g><g><text dx="203.98926542043094" dy="128.02886340746272" text-anchor="middle" class="ct-label">53%</text><text dx="88.59573928369292" dy="137.11053087093524" text-anchor="middle" class="ct-label">36%</text><text dx="125.59914718558909" dy="67.22325482393927" text-anchor="middle" class="ct-label">11%</text></g></svg></div>
+                                  </div>
+                                  <div class="card-footer ">
+                                      <div class="legend">
+                                          <i class="fa fa-circle text-info"></i> Open
+                                          <i class="fa fa-circle text-danger"></i> Bounce
+                                          <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                      </div>
+                                      <hr>
+                                      <div class="stats">
+                                          <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-8">
+                              <div class="card ">
+                                  <div class="card-header ">
+                                      <h4 class="card-title">Users Behavior</h4>
+                                      <p class="card-category">24 Hours performance</p>
+                                  </div>
+                                  <div class="card-body ">
+                                      <div id="chartHours" class="ct-chart"><svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="245px" class="ct-chart-line" style="width: 100%; height: 245px;"><g class="ct-grids"><line y1="210" y2="210" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="185.625" y2="185.625" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="161.25" y2="161.25" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="136.875" y2="136.875" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="112.5" y2="112.5" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="88.125" y2="88.125" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="63.75" y2="63.75" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="39.375" y2="39.375" x1="50" x2="629" class="ct-grid ct-vertical"></line><line y1="15" y2="15" x1="50" x2="629" class="ct-grid ct-vertical"></line></g><g><g class="ct-series ct-series-a"><path d="M50,210L50,140.044C74.125,140.044,98.25,116.156,122.375,116.156C146.5,116.156,170.625,90.563,194.75,90.563C218.875,90.563,243,90.075,267.125,90.075C291.25,90.075,315.375,74.963,339.5,74.963C363.625,74.963,387.75,67.163,411.875,67.163C436,67.163,460.125,39.863,484.25,39.863C508.375,39.863,532.5,40.594,556.625,40.594C580.75,40.594,604.875,26.7,629,26.7C653.125,26.7,677.25,17.925,701.375,17.925C725.5,17.925,749.625,3.787,773.75,3.787C797.875,3.787,822,-20.1,846.125,-20.1L846.125,210Z" class="ct-area" ct:values="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></path></g><g class="ct-series ct-series-b"><path d="M50,210L50,193.669C74.125,193.669,98.25,172.95,122.375,172.95C146.5,172.95,170.625,175.144,194.75,175.144C218.875,175.144,243,151.5,267.125,151.5C291.25,151.5,315.375,140.044,339.5,140.044C363.625,140.044,387.75,128.344,411.875,128.344C436,128.344,460.125,103.969,484.25,103.969C508.375,103.969,532.5,103.481,556.625,103.481C580.75,103.481,604.875,78.619,629,78.619C653.125,78.619,677.25,77.887,701.375,77.887C725.5,77.887,749.625,77.4,773.75,77.4C797.875,77.4,822,52.294,846.125,52.294L846.125,210Z" class="ct-area" ct:values="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></path></g><g class="ct-series ct-series-c"><path d="M50,210L50,204.394C74.125,204.394,98.25,182.456,122.375,182.456C146.5,182.456,170.625,193.669,194.75,193.669C218.875,193.669,243,183.675,267.125,183.675C291.25,183.675,315.375,163.688,339.5,163.688C363.625,163.688,387.75,151.744,411.875,151.744C436,151.744,460.125,135.169,484.25,135.169C508.375,135.169,532.5,134.925,556.625,134.925C580.75,134.925,604.875,102.994,629,102.994C653.125,102.994,677.25,110.063,701.375,110.063C725.5,110.063,749.625,110.063,773.75,110.063C797.875,110.063,822,85.931,846.125,85.931L846.125,210Z" class="ct-area" ct:values="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></path></g></g><g class="ct-labels"><foreignObject style="overflow: visible;" x="50" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">9:00AM</span></foreignObject><foreignObject style="overflow: visible;" x="122.375" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">12:00AM</span></foreignObject><foreignObject style="overflow: visible;" x="194.75" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">3:00PM</span></foreignObject><foreignObject style="overflow: visible;" x="267.125" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">6:00PM</span></foreignObject><foreignObject style="overflow: visible;" x="339.5" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">9:00PM</span></foreignObject><foreignObject style="overflow: visible;" x="411.875" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">12:00PM</span></foreignObject><foreignObject style="overflow: visible;" x="484.25" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">3:00AM</span></foreignObject><foreignObject style="overflow: visible;" x="556.625" y="215" width="72.375" height="20"><span class="ct-label ct-horizontal ct-end" style="width: 72px; height: 20px" xmlns="http://www.w3.org/1999/xhtml">6:00AM</span></foreignObject><foreignObject style="overflow: visible;" y="185.625" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">0</span></foreignObject><foreignObject style="overflow: visible;" y="161.25" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">100</span></foreignObject><foreignObject style="overflow: visible;" y="136.875" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">200</span></foreignObject><foreignObject style="overflow: visible;" y="112.5" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">300</span></foreignObject><foreignObject style="overflow: visible;" y="88.125" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">400</span></foreignObject><foreignObject style="overflow: visible;" y="63.75" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">500</span></foreignObject><foreignObject style="overflow: visible;" y="39.375" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">600</span></foreignObject><foreignObject style="overflow: visible;" y="15" x="10" height="24.375" width="30"><span class="ct-label ct-vertical ct-start" style="height: 24px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">700</span></foreignObject><foreignObject style="overflow: visible;" y="-15" x="10" height="30" width="30"><span class="ct-label ct-vertical ct-start" style="height: 30px; width: 30px" xmlns="http://www.w3.org/1999/xhtml">800</span></foreignObject></g></svg></div>
+                                  </div>
+                                  <div class="card-footer ">
+                                      <div class="legend">
+                                          <i class="fa fa-circle text-info"></i> Open
+                                          <i class="fa fa-circle text-danger"></i> Click
+                                          <i class="fa fa-circle text-warning"></i> Click Second Time
+                                      </div>
+                                      <hr>
+                                      <div class="stats">
+                                          <i class="fa fa-history"></i> Updated 3 minutes ago
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                              <!-- <div class="col-md-2">
+                                  <div class="card card-user">
+                                      <div class="card-image">
+                                          <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&amp;fm=jpg&amp;h=300&amp;q=75&amp;w=400" alt="...">
+                                      </div>
+                                      <div class="card-body">
+                                          <div class="author">
+                                              <a href="#">
+                                                  <img class="avatar border-gray" src="../static/img/faces/face-3.jpg" alt="...">
+                                                  <h5 class="title">Mike Andrew</h5>
+                                              </a>
+                                              <p class="description">
+                                                  michael24
+                                              </p>
+                                          </div>
+                                          <p class="description text-center">
+                                              "Lamborghini Mercy
+                                              <br> Your chick she so thirsty
+                                              <br> I'm in that two seat Lambo"
+                                          </p>
+                                      </div>
+                                      <hr>
+                                      <div class="button-container mr-auto ml-auto">
+                                          <button href="#" class="btn btn-simple btn-link btn-icon">
+                                              <i class="fa fa-facebook-square"></i>
+                                          </button>
+                                          <button href="#" class="btn btn-simple btn-link btn-icon">
+                                              <i class="fa fa-twitter"></i>
+                                          </button>
+                                          <button href="#" class="btn btn-simple btn-link btn-icon">
+                                              <i class="fa fa-google-plus-square"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div> -->
+
+
+
+
+{% endblock %}

@@ -1,0 +1,58 @@
+<footer >
+   <div class="container">
+       <div class="row">
+           <div class="col-md-4 col-sm-12">
+               <img src="{{ url_for('.static', filename='img/logo_footer.png') }}" width="141" height="40" alt="" id="logo_footer" data-retina="true">
+     <ul id="contact_details_footer">
+             <li>{{ g.hoteladdress }} <br>{{ g.country }} </li>
+                   <li><a href="tel://{{ g.phno }}">{{ g.phno }}</a> / <a href="mailto:{{ g.email }}?subject=reservation through website">{{ g.email }}</a></li>
+               </ul>
+           </div>
+           <div class="col-md-2 col-sm-4">
+               <h3>About</h3>
+               <ul>
+                   <li><a href="{{ url_for('.about') }}">About us</a></li>
+                   <li><a href="{{ url_for('.room_list') }}">Rooms</a></li>
+                   <li><a href="#">Activities</a></li>
+                   <li><a href="{{ url_for('.contactus') }}">Contact Us</a></li>
+                    <li><a href="{{ url_for('.gallery') }}">Gallery</a></li>
+               </ul>
+           </div>
+           <div class="col-md-3 col-sm-4">
+               <h3>Available language</h3>
+              <ul>
+                   <li><a href="#">English</a></li>
+                   <!-- <li><a href="#">French</a></li>
+                   <li><a href="#">Spanish</a></li> -->
+               </ul>
+           </div>
+           <div class="col-md-3 col-sm-4"  id="newsletter">
+               <h3>Newsletter</h3>
+               <p>Join our newsletter to keep be informed about offers and news.</p>
+     <div id="message-newsletter_2"></div>
+       <form method="post" action="assets/newsletter.php" name="newsletter_2" id="newsletter_2">
+                   <div class="form-group">
+                       <input name="email_newsletter_2" id="email_newsletter_2"  type="email" value=""  placeholder="Your mail" class="form-control">
+                     </div>
+                       <input type="submit" value="Subscribe" class="btn_1 white" id="submit-newsletter_2">
+                 </form>
+           </div>
+       </div><!-- End row -->
+       <div class="row">
+           <div class="col-md-12">
+               <div id="social_footer">
+                   <ul>
+                       <li><a href="#"><i class="icon-facebook"></i></a></li>
+                       <li><a href="#"><i class="icon-twitter"></i></a></li>
+                       <li><a href="#"><i class="icon-google"></i></a></li>
+                       <li><a href="#"><i class="icon-instagram"></i></a></li>
+                       <li><a href="#"><i class="icon-pinterest"></i></a></li>
+                       <li><a href="#"><i class="icon-vimeo"></i></a></li>
+                       <li><a href="#"><i class="icon-youtube-play"></i></a></li>
+                   </ul>
+                   <p>powered by Travel2Kashmir.com</p>
+               </div>
+           </div>
+       </div><!-- End row -->
+   </div><!-- End container -->
+</footer><!-- End footer -->

@@ -1,0 +1,116 @@
+{% extends 'admin/layout.html' %}
+
+{% block body %}
+
+{% from 'admin/includes/_formhelpers.html' import render_field,render_radio_field,render_gmap_field %}
+                              <div class="col-md-8">
+                                  <div class="card">
+                                      <div class="card-header">
+                                          <h4 class="card-title">{{ title }}</h4>
+																					<hr>
+																					{% with messages = get_flashed_messages() %}
+																	        {% if messages %}
+																	        <ul>
+																	            {% for message in messages %}
+                                              {% if form.errors %}
+                                                        <li>{{ form.errors }}</li>
+
+                                                    {% endif %}
+
+																	            {% endfor %}
+																	        </ul>
+																	        {% endif %}
+																	        {% endwith %}
+																	     </div>
+
+                                      <!--  Row 1-->
+                                      <div class="card-body">
+                                          <form action = "" method = "POST" enctype = "multipart/form-data">
+																						{{ form.csrf_token }}
+                                            {{ form.hidden_tag() }}
+
+
+                                          <!-- Row 1 -->
+                                          <div class="row">
+                                              <div class="col-md-4">
+                                                  <div class="form-group">
+                                                    {{render_field(form.facility_name,class_="form-control" )}}
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                  <div class="form-group">
+                                                    {{render_field(form.facility_type, class_="form-control" )}}
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-2">
+                                                  <div class="form-group">
+                                                    {{render_field(form.facility_price, class_="form-control" )}}
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-2">
+                                                  <div class="form-group">
+                                                    {{render_field(form.facility_serves, class_="form-control" )}}
+                                                  </div>
+                                              </div>
+
+                                        </div>
+
+
+
+																					<!--  Row 2-->
+                                              <div class="row">
+      																					<div class="col-md-12">
+																										<div class="form-group">
+																											{{render_field(form.facility_desc, class_="form-control")}}
+																										</div>
+                                                  </div>
+                                              </div>
+
+
+
+                                              <button type="submit" class="btn btn-info btn-fill pull-right">Update Facility Details</button>
+                                              <div class="clearfix"></div>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- <div class="col-md-2">
+                                  <div class="card card-user">
+                                      <div class="card-image">
+                                          <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&amp;fm=jpg&amp;h=300&amp;q=75&amp;w=400" alt="...">
+                                      </div>
+                                      <div class="card-body">
+                                          <div class="author">
+                                              <a href="#">
+                                                  <img class="avatar border-gray" src="../static/img/faces/face-3.jpg" alt="...">
+                                                  <h5 class="title">Mike Andrew</h5>
+                                              </a>
+                                              <p class="description">
+                                                  michael24
+                                              </p>
+                                          </div>
+                                          <p class="description text-center">
+                                              "Lamborghini Mercy
+                                              <br> Your chick she so thirsty
+                                              <br> I'm in that two seat Lambo"
+                                          </p>
+                                      </div>
+                                      <hr>
+                                      <div class="button-container mr-auto ml-auto">
+                                          <button href="#" class="btn btn-simple btn-link btn-icon">
+                                              <i class="fa fa-facebook-square"></i>
+                                          </button>
+                                          <button href="#" class="btn btn-simple btn-link btn-icon">
+                                              <i class="fa fa-twitter"></i>
+                                          </button>
+                                          <button href="#" class="btn btn-simple btn-link btn-icon">
+                                              <i class="fa fa-google-plus-square"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div> -->
+
+
+
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'admin/layout.html' %}
+
+{% block body %}
+{% from 'admin/includes/_formhelpers.html' import render_field %}
+
+                        <div class="col-md-9">
+                                  <div class="card">
+                                      <div class="card-header">
+                                          <h4 class="card-title">{{ title }} </h4>
+
+																					<hr>
+                                          <!-- <a href="{{ url_for('admin.add_room')}}" class="btn btn-warning btn-round btn-fill">Add New Room</a>
+
+                                          <a href="{{ url_for('admin.add_facility')}}" class="btn btn-success btn-round btn-fill">Add New Facility</a>
+                                          <a href="#" class="btn btn-info btn-round btn-fill">Add Room Price Plan</a>
+                                          <a href="#" class="btn btn-default btn-round btn-fill">Add Room Price Plan</a>
+
+                                          <hr> -->
+																					{% with messages = get_flashed_messages() %}
+																	        {% if messages %}
+																	        <ul>
+																	            {% for message in messages %}
+																	            <li>{{ message }}</li>
+																	            {% endfor %}
+																	        </ul>
+																	        {% endif %}
+																	        {% endwith %}
+																	     </div>
+																			<!--  Row 1-->
+                                      <div class="card-body">
+                                        <table class="table table-hover">
+                                          <thead>
+                                          <th>Name</th>
+                                          <th>Type</th>
+                                          <th>Price</th>
+                                          <th>Description</th>
+
+                                          <th ></th>
+                                          <th ></th>
+                                          </thead>
+                                          <tbody>
+                                          {% for f in facility %}
+                                          <tr>
+                                            <td>{{ f.facility_name }}</td>
+                                            <td>{{ f.facility_type }}</td>
+                                            <td>{{ f.facility_price }}</td>
+                                            <td>{{ f.facility_desc }}</td>
+
+                                            <td><a href="edit_facility/{{ f._id }}" class="btn btn-primary btn-fill pullright">Edit</a></td>
+                                            <td><a href="delete_facility/{{ f._id }}" class="btn btn-danger btn-fill pullright">Delete</a></td>
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--  Card 2 Facility-->
+                              <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Actions </h4>
+
+      																					<hr>
+                                                <p><a href="{{ url_for('admin.add_room')}}" class="btn btn-warning btn-round btn-fill">Add New Room</a></p>
+
+                                                <p><a href="{{ url_for('admin.add_facility')}}" class="btn btn-success btn-round btn-fill">Add New Facility</a></p>
+                                                <p><a href="{{ url_for('admin.facility')}}" class="btn btn-info btn-round btn-fill">View Facilities</a></p>
+                                                <p><a href="#" class="btn btn-default btn-round btn-fill">Add Room Price Plan</a></p>
+
+                                                <!-- <hr>
+      																					{% with messages = get_flashed_messages() %}
+      																	        {% if messages %}
+      																	        <ul>
+      																	            {% for message in messages %}
+      																	            <li>{{ message }}</li>
+      																	            {% endfor %}
+      																	        </ul>
+      																	        {% endif %}
+      																	        {% endwith %} -->
+      																	     </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+{% endblock %}
