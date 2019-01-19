@@ -1,0 +1,21 @@
+yum install pip
+sudo su
+
+easy_install pip
+yum install pip
+pip install gunicorn
+pip install virtualenv
+
+virtualenv -p python2.7 rosepetal
+
+source rosepetal/bin/activate
+
+sudo yum install git
+git clone https://github.com/saqibmujtaba/demo.git
+https://github.com/saqibmujtaba/demo.git
+
+/etc/nginx/nginx.conf
+
+/etc/nginx/conf.d/virtual.conf
+
+gunicorn -b 0.0.0.0:8000 wsgi:app
