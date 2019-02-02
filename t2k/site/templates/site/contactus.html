@@ -61,6 +61,19 @@
         	<div class="col-md-7 col-md-offset-1">
 
             <div id="message-contact"></div>
+            {% with messages = get_flashed_messages() %}
+               {% if messages %}
+                  {% for message in messages %}
+
+                  <div class="alert alert-danger alert-dismissible">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+                      <strong>Oops!</strong> {{ message }}...
+                  </div>
+
+                  {% endfor %}
+               {% endif %}
+            {% endwith %}
 				<form method="POST" action="{{ url_for('.contactus')}}" >
           {{ form.csrf_token }}
 					<div class="row">
@@ -127,7 +140,7 @@
 {% include 'site/includes/_common_scripts.html' %}
 
 <!-- Specifi scripts -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBv-Y4k7yxjNUDPPHZD1W5NUz8Cfjx3wq8"></script>
 <script type="text/javascript" src="{{ url_for('.static', filename='js/mapmarker.jquery.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('.static', filename='js/mapmarker_func.jquery.js') }}"></script>
 

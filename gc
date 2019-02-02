@@ -9,6 +9,8 @@ pip install virtualenv
 virtualenv -p python2.7 rosepetal
 
 source rosepetal/bin/activate
+cd demo
+python run.py
 
 sudo yum install git
 git clone https://github.com/saqibmujtaba/demo.git
@@ -19,3 +21,9 @@ https://github.com/saqibmujtaba/demo.git
 /etc/nginx/conf.d/virtual.conf
 
 gunicorn -b 0.0.0.0:8000 wsgi:app
+
+
+gunicorn -b 0.0.0.0:80  run:app
+
+
+ git push https://github.com/saqibmujtaba/demo.git --force

@@ -4,32 +4,29 @@
 <head>
     {% include 'site/includes/_head.html' %}
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/DateTimePicker.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/owl.theme.min.default.css') }}">
 </head>
 
 <body>
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
+  <div class="layer"></div>
+  <!-- Mobile menu overlay mask -->
 
-    <div id="preloader">
-        <div data-loader="circle-side"></div>
-    </div><!-- End Preload -->
+  <div id="preloader">
+      <div data-loader="circle-side"></div>
+  </div><!-- End Preload -->
 
-     <!-- Header ================================================== -->
-    {% include 'site/includes/_header.html' %}
-    <!-- End Header =============================================== -->
+    <!-- Header ================================================== -->
+   {% include 'site/includes/_header.html' %}
+   <!-- End Header =============================================== -->
 
-    <!-- Set up your HTML -->
-<div class="carousel_in">
-      <div><img src="{{ url_for('.static', filename='img/room_detail_1.jpg') }}" alt=""><div class="caption"><h3>Fantastic Bed Room</h3></div></div>
-      <!-- <div><img src="{{ url_for('.static', filename='img/room_detail_2.jpg' ) }}" alt=""><div class="caption"><h3>Equiped bathroom</h3></div></div>
-      <div><img src="{{ url_for('.static', filename='img/room_detail_3.jpg') }}" alt=""><div class="caption"><h3>Equiped bathroom</h3></div></div>
-      <div><img src="{{ url_for('.static', filename='img/room_detail_4.jpg') }}" alt=""><div class="caption"><h3>Nice outdoor</h3></div></div>
-      <div><img src="{{ url_for('.static', filename='img/room_detail_5.jpg') }}" alt=""><div class="caption"><h3>Swimming pool</h3></div></div> -->
-    </div>
+   <!-- SubHeader =============================================== -->
+   <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="{{ url_for('.static', filename='img/sub_header_short_2.jpg') }}" data-natural-width="1400" data-natural-height="350">
+       <div id="subheader">
+           <!-- <h1>Gallery</h1> -->
+   </div><!-- End subheader -->
+   </section><!-- End section -->
+   <!-- End SubHeader ============================================ -->
+
 
 
     <h1 class="main_title_in">{{ rd.room_name }}</h1>
@@ -96,40 +93,40 @@
                 </div>
                 <div class="col-md-9">
                 	<div id="score_detail"><span>7.5</span>Good <small>(Based on 34 reviews)</small></div><!-- End general_rating -->
-                  <div class="row" id="rating_summary">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>Position
-                                  <div class="rating">
-                                          <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></i><i class="icon-star"></i><i class="icon-star-empty"></i>
-                                  </div>
-                              </li>
-                              <li>Comfort
-                              <div class="rating">
-                                          <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i>
-                                  </div>
-                              </li>
-                          </ul>
-                      </div>
-                      <div class="col-md-6">
-                        <ul>
-                            <li>Price
-                              <div class="rating">
-                                          <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></i><i class="icon-star"></i><i class="icon-star"></i>
-                                  </div>
-                              </li>
-                              <li>Quality
-                              <div class="rating">
-                                          <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class=" icon-star"></i></i><i class="icon-star"></i>
-                                  </div>
-                              </li>
-                          </ul>
-                      </div>
-                  </div><!-- End row -->
+                    <div class="row" id="rating_summary">
+                    	<div class="col-md-6">
+                        	<ul>
+                            	<li>Position
+                                    <div class="rating">
+                                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></i><i class="icon-star"></i><i class="icon-star-empty"></i>
+                                    </div>
+                                </li>
+                                <li>Comfort
+                                <div class="rating">
+                                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                        	<ul>
+                            	<li>Price
+                                <div class="rating">
+                                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></i><i class="icon-star"></i><i class="icon-star"></i>
+                                    </div>
+                                </li>
+                                <li>Quality
+                                <div class="rating">
+                                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class=" icon-star"></i></i><i class="icon-star"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- End row -->
 
-                    <hr>
+                    <!-- <hr> -->
                     <!-- <div class="review_strip_single">
-                        <img src="img/avatar1.jpg" alt="" class="img-circle">
+                        <img src="{{ url_for('.static', filename='img/avatar1.jpg') }}" alt="" class="img-circle">
                         <small> - 10 March 2015 -</small>
                         <h4>Jhon Doe</h4>
                         <p>
@@ -138,11 +135,10 @@
                         <div class="rating">
                             <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
                         </div>
-                    </div> -->
-                    <!-- End review strip -->
-<!--
-                    <div class="review_strip_single">
-                        <img src="img/avatar2.jpg" alt="" class="img-circle">
+                    </div>--><!-- End review strip -->
+
+                    <!--<div class="review_strip_single">
+                        <img src="{{ url_for('.static', filename='img/avatar2.jpg') }}" alt="" class="img-circle">
                         <small> - 10 March 2015 -</small>
                         <h4>Jhon Doe</h4>
                         <p>
@@ -151,11 +147,10 @@
                         <div class="rating">
                             <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
                         </div>
-                    </div> -->
-                    <!-- End review strip -->
+                    </div>--><!-- End review strip -->
 
                     <!-- <div class="review_strip_single last">
-                        <img src="img/avatar3.jpg" alt="" class="img-circle">
+                        <img src="{{ url_for('.static', filename='img/avatar3.jpg') }}" alt="" class="img-circle">
                         <small> - 10 March 2015 -</small>
                         <h4>Jhon Doe</h4>
                         <p>
@@ -171,47 +166,27 @@
             </div>
             <hr>
             <div class="row">
+
+
             <div class="col-md-3">
                     <h3>Policies</h3>
                 </div>
                 <div class="col-md-9">
                 <ul id="policies">
                     <li><i class="icon_set_1_icon-83"></i><h5>Check-in and check-out.</h5>
-                    <p>Our standard check-in time is 12 noon and you can check-in any time after that till your reservation is valid.</p>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel lorem legendos. Unum etiam cum te, an elit assueverit vix, falli aliquam complectitur ex ius.</p>
                     </li>
                     <li><i class="icon_set_1_icon-54"></i><h5>Cancellation</h5>
-                    <p>
-                      <table class="table table-striped">
-									<thead>
-										<tr>
-											<td>Cancellation Time</td>
-											<td>Cancellation Fee</td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>30 days or more prior to check-in date</td>
-											<td>100% refund</td>
-										</tr>
-										<tr>
-											<td>Between 15 to 30 days of check-in date</td>
-											<td>50% advance amount</td>
-										</tr>
-										<tr>
-											<td>Less than 15 days of check-in date</td>
-											<td>100% advance amount</td>
-										</tr>
-									</tbody>
-								</table></p>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel lorem legendos. Unum etiam cum te, an elit assueverit vix, falli aliquam complectitur ex ius.</p>
                     </li>
                     <li><i class="icon_set_1_icon-47"></i><h5>Smoking</h5>
-                    <p>We really take pride in keeping all our rooms fresh and clean, and discourage smoking in the rooms. In case guests wish to smoke, the Hotel Reception will be happy to help.</p>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel lorem legendos. Unum etiam cum te, an elit assueverit vix, falli aliquam complectitur ex ius.</p>
                     </li>
                     <li><i class="icon_set_1_icon-35"></i><h5>Payments</h5>
-                    <p>For bookings of more than 7 nights, guests have to settle all outstanding payments on a weekly basis. Hotel will be unable to provide further accommodation prior to settlement of the outstanding amount.</p>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel lorem legendos. Unum etiam cum te, an elit assueverit vix, falli aliquam complectitur ex ius.</p>
                     </li>
                     <li><i class="icon_set_1_icon-13"></i><h5>Disable</h5>
-                    <p>The reception or the front desk team should provide special assistance and care while check-in or check-out is done for guest with a special need or disabled guests.</p>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel lorem legendos. Unum etiam cum te, an elit assueverit vix, falli aliquam complectitur ex ius.</p>
                     </li>
                     </ul>
                 </div>
@@ -222,37 +197,34 @@
             <div class="theiaStickySidebar">
             	<div class="box_style_1">
                     <div id="message-booking"></div>
-                    <form method="post" action="./{{ id }}"> <!-- id="check_avail" autocomplete="off" > -->
-
-                      {% with messages = get_flashed_messages() %}
-                         {% if messages %}
-                            {% for message in messages %}
-
-                            <div class="alert alert-danger alert-dismissible">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-
-                                <strong>Oops!</strong> {{ message }}...
-                            </div>
-
-                            {% endfor %}
-                         {% endif %}
-                      {% endwith %}
-
-
+                    {% from 'admin/includes/_formhelpers.html' import render_field %}
+                    {% with messages = get_flashed_messages() %}
+                       {% if messages %}
+                          {% for message in messages %}
+                             {{ message }}
+                          {% endfor %}
+                       {% endif %}
+                    {% endwith %}
+                    	<form method="POST" action="./{{ id }}" >
                       {{ form.csrf_token }}
-                    <input name="room_type" id="room_type" type="hidden" value="{{ rd.room_name }}">
+
+                    <input name="room_type" id="room_type" type="hidden" value="{{ rd.id }}">
                     	<div class="row">
                         	<div class="col-md-6 col-sm-6">
+
                             	<div class="form-group">
+
                                 	<label>Arrival date</label>
-                            	   	<input class="startDate1 form-control datepick" type="text" data-field="date" data-startend="start" data-startendelem=".endDate1" readonly placeholder="Arrival" id="check_in" name="check_in">
+
+                            	   	<input class="date-pick form-control" type="date" id="check_in" name="check_in" placeholder="Check in" data-date-format="M d, D" >
                                    <span class="input-icon"><i class="icon-calendar-7"></i></span>
                                    </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                             	<div class="form-group">
                                 	<label>Departure date</label>
-                            	   <input class="endDate1 form-control datepick" type="text" data-field="date" data-startend="end" data-startendelem=".startDate1" readonly placeholder="Departure" id="check_out" name="check_out">
+
+                            	   <input class="date-pick form-control" type="date" id="check_out" name="check_out" placeholder="Check out" data-date-format="M d, D" >
                                    <span class="input-icon"><i class="icon-calendar-7"></i></span>
                                </div>
                             </div>
@@ -317,12 +289,12 @@
 
     <div id="dtBox"></div><!-- End datepicker -->
 
-     {% include 'site/includes/_footer.html' %}
+
 
 <div id="toTop"></div><!-- Back to top button -->
-
+{% include 'site/includes/_footer.html' %}
 <!-- Modal Review -->
-<!-- <div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -332,8 +304,8 @@
 			<div class="modal-body">
 				<div id="message-review">
 				</div>
-				<form method="post" action="assets/review.php" name="review" id="review"> -->
-					<!-- <div class="row">
+				<form method="post" action="assets/review.php" name="review" id="review">
+					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<input name="name_review" id="name_review" type="text" placeholder="Your name" class="form-control">
@@ -344,9 +316,9 @@
 								<input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name" class="form-control">
 							</div>
 						</div>
-					</div> -->
+					</div>
 					<!-- End row -->
-					<!-- <div class="row">
+					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<input name="email_review" id="email_review" type="email" placeholder="Your email" class="form-control">
@@ -362,10 +334,10 @@
 								</select>
 							</div>
 						</div>
-					</div> -->
+					</div>
 					<!-- End row -->
-					<!-- <hr> -->
-					<!-- <div class="row">
+					<hr>
+					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Position</label>
@@ -394,9 +366,9 @@
 								</select>
 							</div>
 						</div>
-					</div> -->
+					</div>
 					<!-- End row -->
-					<!-- <div class="row">
+					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Price</label>
@@ -423,11 +395,13 @@
 									<option value="Superb">Super</option>
 									<option value="Not rated">I don't know</option>
 								</select>
+
+
 							</div>
 						</div>
-					</div> -->
+					</div>
 					<!-- End row -->
-					<!-- <div class="form-group">
+					<div class="form-group">
 						<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
 					</div>
 					<div class="form-group">
@@ -438,11 +412,14 @@
 			</div>
 		</div>
 	</div>
-</div> -->
-<!-- End Modal Review -->
+</div><!-- End Modal Review -->
+
+
+
 
 <!-- COMMON SCRIPTS -->
 {% include 'site/includes/_common_scripts.html' %}
+
 <!-- SPECIFIC SCRIPTS -->
 <script>
   $('.carousel_in').owlCarousel({
@@ -470,8 +447,8 @@
       additionalMarginTop: 80
     });
 </script>
-<script type="text/javascript" src="{{ url_for('.static', filename='js/DateTimePicker.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('.static', filename='js/DateTimePicker.js') }}"></script>
-<script type="text/javascript">$("#dtBox").DateTimePicker();</script>
+<script type="text/javascript" src="{{ url_for('.static', filename='js/bootstrap-datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('.static', filename='js/bootsrap_datepicker_func.js') }}"></script>
+
 </body>
 </html>

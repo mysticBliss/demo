@@ -3,7 +3,7 @@ from flask import Flask
 # extensions
 from flask_pymongo import PyMongo
 from flask_wtf.csrf import CSRFProtect
-
+from flask_moment import Moment
 import ConfigStore as cnf
 
 import os
@@ -26,13 +26,13 @@ app=Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 # app.config["MONGO_URI"] = "mongodb://"+ s_uname +":" + s_upass +"@ds024778.mlab.com:24778/"+ s_db
-#app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/"+ s_db
-app.config["MONGO_URI"] = "mongodb://rosepetal:63xwBcsYbfxuJ0lR@rosepetal-shard-00-00-kinxq.mongodb.net:27017,rosepetal-shard-00-01-kinxq.mongodb.net:27017,rosepetal-shard-00-02-kinxq.mongodb.net:27017/t2k?ssl=true&replicaSet=rosepetal-shard-0&authSource=admin&retryWrites=true"
-app.config["SERVER_NAME"] = 'localhost:5000' #str(s_host + ':' + s_port)
+app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/"+ s_db
+#app.config["MONGO_URI"] = "mongodb://rosepetal:63xwBcsYbfxuJ0lR@rosepetal-shard-00-00-kinxq.mongodb.net:27017,rosepetal-shard-00-01-kinxq.mongodb.net:27017,rosepetal-shard-00-02-kinxq.mongodb.net:27017/t2k?ssl=true&replicaSet=rosepetal-shard-0&authSource=admin&retryWrites=true"
+#app.config["SERVER_NAME"] = 'localhost:5000' #str(s_host + ':' + s_port)
 # initializes extensions
 mongo = PyMongo(app)
 csrf = CSRFProtect(app)
-
+moment = Moment(app)
 # Importing views/routes
 from t2k.api.routes import mod
 from t2k.admin.routes import mod
