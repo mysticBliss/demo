@@ -25,5 +25,5 @@ gunicorn -b 0.0.0.0:8000 wsgi:app
 
 gunicorn -b 0.0.0.0:80  run:app
 
-
- git push https://github.com/saqibmujtaba/demo.git --force
+git remote add origin https://github.com/saqibmujtaba/demo.git
+git push -u origin master
