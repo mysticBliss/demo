@@ -4,7 +4,7 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from flask_wtf.csrf import CSRFProtect
 from flask_moment import Moment
-from flask_images import Images
+# from flask_images import Images
 import ConfigStore as cnf
 
 import os
