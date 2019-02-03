@@ -4,6 +4,7 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from flask_wtf.csrf import CSRFProtect
 from flask_moment import Moment
+from flask_images import Images
 import ConfigStore as cnf
 
 import os
@@ -33,6 +34,8 @@ app.config["MONGO_URI"] = "mongodb://rosepetal:63xwBcsYbfxuJ0lR@rosepetal-shard-
 mongo = PyMongo(app)
 csrf = CSRFProtect(app)
 moment = Moment(app)
+images = Images(app)
+
 # Importing views/routes
 from t2k.api.routes import mod
 from t2k.admin.routes import mod
