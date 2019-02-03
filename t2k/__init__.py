@@ -34,7 +34,7 @@ app.config["MONGO_URI"] = "mongodb://rosepetal:63xwBcsYbfxuJ0lR@rosepetal-shard-
 mongo = PyMongo(app)
 csrf = CSRFProtect(app)
 moment = Moment(app)
-images = Images(app)
+# images = Images(app)
 
 # Importing views/routes
 from t2k.api.routes import mod
