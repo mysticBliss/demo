@@ -108,7 +108,7 @@ def details():
                          { "hotelname": 1,"estd":1,"rating": 1,"long_desc":1,"chain": 1,"hoteladdress":1,"hoteltype": 1,
                          "short_desc":1,"state": 1,"longitude":1,"city_center_distance": 1,
                          "floors":1,"postal_code": 1,"rooms":1,"latitude": 1,"airport_distance":1,
-                         "city":1,"country":1,"plus_code":1, "locality":1,"phno":1,"email":1})
+                         "city":1,"country":1,"plus_code":1, "locality":1,"phno":1,"phno2":1,"email":1})
 
         form.hotelname1.data = res['hotelname']
         form.estd.data= datetime.datetime.strptime(res['estd'], "%Y%m%d").date()
@@ -131,6 +131,7 @@ def details():
         form.plus_code.data = res['plus_code']
         form.locality.data = res['locality']
         form.phno.data = res['phno']
+        form.phno2.data = res['phno2']
         form.email.data = res['email']
 
 
@@ -157,6 +158,7 @@ def details():
             'plus_code':form.plus_code.data,
             'country': form.country.data,
             'phno':form.phno.data,
+            'phno2':form.phno2.data,
             'email': form.email.data
             }
         print data
@@ -220,6 +222,7 @@ def details():
                                                                                         'plus_code':form.plus_code.data,
                                                                                         'country': form.country.data,
                                                                                         'phno':form.phno.data,
+                                                                                        'phno2':form.phno2.data,
                                                                                         'email': form.email.data
                                                                                         })
             flash("Success",'success')

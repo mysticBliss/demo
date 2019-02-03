@@ -52,5 +52,6 @@ class RegisterHotel(FlaskForm):
     city_center_distance=DecimalField("City Center Distance",[validators.Required("Please enter how far is City Center")])
     images = FileField(u'Logo File')
     phno =IntegerField("Phone No", [validators.Required("Please enter Phone No")])
+    phno2 =IntegerField("Additional Phone No")
     email=EmailField("Email ID",[validators.Required("Please enter Email ID")])
     submit = SubmitField("Send")
