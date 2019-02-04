@@ -4,19 +4,12 @@
 {% from 'admin/includes/_formhelpers.html' import render_field %}
 
                         <div class="col-md-9">
+                          {% include 'admin/includes/_message.html' %}
                                   <div class="card">
                                       <div class="card-header">
                                           <h4 class="card-title">{{ title }}</h4>
 																					<hr>
-																					{% with messages = get_flashed_messages() %}
-																	        {% if messages %}
-																	        <ul>
-																	            {% for message in messages %}
-																	            <li>{{ message }}</li>
-																	            {% endfor %}
-																	        </ul>
-																	        {% endif %}
-																	        {% endwith %}
+
 																	     </div>
 																			<!--  Row 1-->
                                       <div class="card-body">

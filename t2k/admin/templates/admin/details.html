@@ -60,23 +60,12 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
 {% from 'admin/includes/_formhelpers.html' import render_field,render_radio_field,render_gmap_field %}
                               <div class="col-md-10">
+                                {% include 'admin/includes/_message.html' %}
                                   <div class="card">
                                       <div class="card-header">
                                           <h4 class="card-title">{{ title }}</h4>
 																					<hr>
-																					{% with messages = get_flashed_messages() %}
-																	        {% if messages %}
-																	        <ul>
-																	            {% for message in messages %}
-                                              {% if form.errors %}
-                                                        <li>{{ form.errors }}</li>
 
-                                                    {% endif %}
-
-																	            {% endfor %}
-																	        </ul>
-																	        {% endif %}
-																	        {% endwith %}
 																	     </div>
 																			<!--  Row 1-->
                                       <div class="card-body">
@@ -217,7 +206,12 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
                                                     {{render_field(form.phno,class_="form-control")}}
                                                   </div>
                                                 </div>
-                                                <div class="col-md-5">
+                                                <div class="col-md-2">
+                                                  <div class="form-group">
+                                                    {{render_field(form.phno2,class_="form-control")}}
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-3">
                                                   <div class="form-group">
                                                     {{render_field(form.email,class_="form-control")}}
                                                   </div>

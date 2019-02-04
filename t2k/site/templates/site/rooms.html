@@ -38,10 +38,10 @@
             	<div class="row">
 
                 	<div class="room_desc clearfix" onclick="location.href='/room_detail/{{ r._id }}';">
-                	<div class="col-md-7">
-                    	<figure><img src="{{ url_for('.static', filename='img/room_list_1.jpg') }}" alt="" class="img-responsive"></figure>
+                	<div class="col-md-1">
+                    	<!-- <figure><img src="{{ url_for('.static', filename='img/room_list_1.jpg') }}" alt="" class="img-responsive"></figure> -->
                     </div>
-                    <div class="col-md-5 room_list_desc">
+                    <div class="col-md-11 room_list_desc">
                     	<h3>{{ r.room_name }}</h3>
                         <p>{{ r.room_desc }}</p>
                         <ul>

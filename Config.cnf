@@ -12,3 +12,10 @@ id = 5c013a9d2ccb025bd4d8295a
 serviceUsername = app
 servicePassword = 6QqdEn
 serviceDB = t2k
+
+
+[email]
+MAIL_SERVER = smtp.zoho.com
+MAIL_PORT = 465
+MAIL_USERNAME = reservations@rosepetal.co
+MAIL_PASSWORD = s

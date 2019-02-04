@@ -17,7 +17,7 @@ def get_commons():
     res = mongo.db.hotels.find_one({ "_id" : ObjectId('5c013a9d2ccb025bd4d8295a') },
                      { "_id":1, "hotelname": 1,"estd":1,"rating": 1,"long_desc":1,"chain": 1,"hoteladdress":1,"hoteltype": 1,
                      "short_desc":1,"state": 1,"longitude":1,"city_center_distance": 1,
-                     "floors":1,"postal_code": 1,"rooms":1,"latitude": 1,"airport_distance":1,"city":1,"country":1,"phno":1,"email":1,"plus_code":1, "locality":1})
+                     "floors":1,"postal_code": 1,"rooms":1,"latitude": 1,"airport_distance":1,"city":1,"country":1,"phno":1,"phno2":1,"email":1,"plus_code":1, "locality":1})
     g.hotelname = res['hotelname']
     g.long_desc = res['long_desc']
     g.hoteladdress = res['hoteladdress']
@@ -25,7 +25,7 @@ def get_commons():
     g.hotel_id = res['_id']
     g.email=res['email']
     g.phno=phonenumbers.format_number(phonenumbers.parse(str(res['phno']), 'IN'), phonenumbers.PhoneNumberFormat.INTERNATIONAL)
-
+    g.phno2=phonenumbers.format_number(phonenumbers.parse(str(res['phno2']), 'IN'), phonenumbers.PhoneNumberFormat.INTERNATIONAL)
 def get_rooms_facility():
     rooms = mongo.db.rooms.find({ "hotel_id" : ObjectId('5c013a9d2ccb025bd4d8295a') },{"room_name" : 1,
                                                                         "room_type" : 1,

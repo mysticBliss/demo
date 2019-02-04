@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import HiddenField, SelectMultipleField, StringField,TextField,TextAreaField,FileField,PasswordField, SubmitField,RadioField,IntegerField,SelectField,validators, ValidationError
+from wtforms import HiddenField, FloatField,SelectMultipleField, StringField,TextField,TextAreaField,FileField,PasswordField, SubmitField,RadioField,IntegerField,SelectField,validators, ValidationError
 from wtforms.fields.html5 import DateField,DecimalField,EmailField
 
 class AddRoom(FlaskForm):
@@ -11,8 +11,9 @@ class AddRoom(FlaskForm):
     room_capacity=IntegerField("Capacity",[validators.Required("Please enter max capacity of this room.")])
     room_desc=TextAreaField("Description")
     room_price=IntegerField("Price",[validators.Required("Please enter price of this room")])
-    room_len=IntegerField("Length",[validators.Required("Please enter length of this room")])
-    room_brd=IntegerField("Breath",[validators.Required("Please enter breath of this room")])
+    room_len=FloatField("Length",[validators.Required("Please enter length of this room")])
+    room_brd=FloatField("Breath",[validators.Required("Please enter breath of this room")])
+    images = FileField(u'Logo File')
     # facilities=SelectMultipleField('Facilities Offered')
 
 class AddFacility(FlaskForm):
@@ -52,6 +53,6 @@ class RegisterHotel(FlaskForm):
     city_center_distance=DecimalField("City Center Distance",[validators.Required("Please enter how far is City Center")])
     images = FileField(u'Logo File')
     phno =IntegerField("Phone No", [validators.Required("Please enter Phone No")])
-    phno2 =IntegerField("Additional Phone No")
+    phno2 =IntegerField("Phone No 2")
     email=EmailField("Email ID",[validators.Required("Please enter Email ID")])
     submit = SubmitField("Send")

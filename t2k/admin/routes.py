@@ -9,7 +9,9 @@ from werkzeug.utils import secure_filename
 from bson import json_util, ObjectId
 import json
 import os
+import base64
 
+from bson.binary import Binary
 
 mod=Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
@@ -44,8 +46,8 @@ def login():
                 flash(u'Username doesn\'t exist', 'error')
             else:
                 if request.form['username'] == results['username'] and  sha256_crypt.verify(request.form['password'], results['password']):
-                    flash("Welcome, %s" %request.form['username'])
-                    flash(u'Logging in ', 'success')
+                    flash("Welcome, %s" %request.form['username'], 'success')
+                    # flash(u'Logging in ', 'success')
                     session['logged_in'] = True
                     session['username'] = request.form['username']
 
@@ -60,7 +62,7 @@ def login():
                     session['hotel_id'] = hotel_access[0]['id']
                     session['hotelname'] = hotel_access[0]['hotelname']
 
-                    return render_template('admin/dashboard.html', hotel_access=hotel_access)
+                    return render_template('admin/dashboard.html', hotel_access=hotel_access, title='Dashboard')
                 else:
                     flash(u'Invalid Credentials!', 'warning')
                     return render_template('admin.login')
@@ -99,7 +101,7 @@ def allowed_file(filename):
 # @csrf.exempt
 @is_logged_in
 def details():
-    print request.method
+    # print request.method
     form = RegisterHotel(request.form)
 
     if request.method == 'GET':
@@ -195,12 +197,12 @@ def details():
         #     print (message)
         # else:
         #     print 'SUCCESS'
-        print  form.estd.data
-        print request.form['hotelname']
+        # print  form.estd.data
+        # print request.form['hotelname']
 
         if form.validate():
             # Save the comment here.
-            flash('Hello ' + form.hotelname.data)
+            # flash('Hello ' + form.hotelname.data,"success")
             results = mongo.db.hotels.save({ "_id" : ObjectId(session['hotel_id']) , 'hotelname': form.hotelname1.data,
                                                                                         'locality':form.locality.data,
                                                                                         'chain':form.chain.data,
@@ -225,7 +227,7 @@ def details():
                                                                                         'phno2':form.phno2.data,
                                                                                         'email': form.email.data
                                                                                         })
-            flash("Success",'success')
+            flash("Updated successfully",'success')
 
         else:
             flash('All the form fields are required. ')
@@ -289,7 +291,7 @@ def edit_facility(id):
 
     if request.method == 'POST':
         selected_facilities = [ ObjectId(str(facility)) for facility in request.form.getlist("facilities")]
-        print selected_facilities
+        # print selected_facilities
         data = {
             'facility_name': form.facility_name.data,
             'facility_type':form.facility_type.data,
@@ -299,14 +301,14 @@ def edit_facility(id):
             }
         if form.validate():
             # Save the comment here.
-            flash('Hello ' + form.facility_name.data)
+            # flash('Hello ' + form.facility_name.data)
             results = mongo.db.facility.save({ "_id" : ObjectId(id) , 'facility_name': form.facility_name.data,
                                                                         'facility_type':form.facility_type.data,
                                                                         'facility_desc':form.facility_desc.data,
                                                                         'facility_serves':int(form.facility_serves.data),
                                                                         'facility_price':int(form.facility_price.data)
                                                                          })
-            flash("Success",'success')
+            flash("Updated successfully",'success')
             return redirect(url_for('admin.facility'))
         else:
             flash('All the form fields are required. ')
@@ -367,39 +369,56 @@ def edit_room(id):
 
     if request.method == 'POST':
         selected_facilities = [ ObjectId(str(facility)) for facility in request.form.getlist("facilities")]
-        print selected_facilities
+        # print selected_facilities
         data = {
             'room_name': form.room_name.data,
             'room_type':form.room_type.data,
             'room_desc':form.room_desc.data,
             'room_price':int(form.room_price.data),
             'room_capacity': int(form.room_capacity.data),
-            'room_len':int(form.room_len.data),
-            'room_brd': int(form.room_brd.data),
+            'room_len':(form.room_len.data),
+            'room_brd': (form.room_brd.data),
             # 'estd': form.estd.data.strftime("%Y%m%d"),
             'total_rooms': form.total_rooms.data,
             'facilities' : selected_facilities
             }
+
+
+
         if form.validate():
             # Save the comment here.
-            flash('Hello ' + form.room_name.data)
+            # flash('Hello ' + form.room_name.data)
             results = mongo.db.rooms.save({ "_id" : ObjectId(id) , 'room_name': form.room_name.data,
                                                                                         'room_type':form.room_type.data,
                                                                                         'room_desc':form.room_desc.data,
                                                                                         'room_price':int(form.room_price.data),
                                                                                         'room_capacity': int(form.room_capacity.data),
-                                                                                        'room_len':int(form.room_len.data),
-                                                                                        'room_brd': int(form.room_brd.data),
+                                                                                        'room_len':(form.room_len.data),
+                                                                                        'room_brd': (form.room_brd.data),
                                                                                         'total_rooms': form.total_rooms.data,
                                                                                         'hotel_id': ObjectId(session['hotel_id']),
                                                                                         'facilities' : [ ObjectId(str(facility)) for facility in request.form.getlist("facilities")]
                                                                                         })
-            flash("Success",'success')
+
+
+            flash("Updated successfully",'success')
             return redirect(url_for('admin.rooms'))
         else:
             flash('All the form fields are required. ')
 
     return render_template('admin/edit_room.html', id=id ,facilities = facilities,selected_facilities=selected_facilities, form=form, title="Edit Room Details")
+
+
+@mod.route('/delete_room/<string:id>/', methods=['GET'])
+@is_logged_in
+def delete_room(id):
+    mongo.db.rooms.remove({'_id':ObjectId(id)})
+    flash("Deleted successfully",'success')
+    return redirect(url_for('admin.rooms'))
+
+
+
+
 
 
 @mod.route('/add_room', methods=['GET','POST'])
@@ -410,17 +429,21 @@ def add_room():
     facilities = mongo.db.facility.find({})
 
     if request.method == 'POST':
-        print form.room_name.data
+        # print form.room_name.data
         # selected_facilities = [ ObjectId(str(facility)) for facility in request.form.getlist("facilities")]
         # print 'facilities' : [ ObjectId(str(facility)) for facility in request.form.getlist("facilities")]
+
+
+
+
         data = {
             'room_name': form.room_name.data,
             'room_type':form.room_type.data,
             'room_desc':form.room_desc.data,
             'room_price':int(form.room_price.data),
             'room_capacity': int(form.room_capacity.data),
-            'room_len':int(form.room_len.data),
-            'room_brd': int(form.room_brd.data),
+            'room_len':(form.room_len.data),
+            'room_brd': (form.room_brd.data),
             'total_rooms': form.total_rooms.data,
             'hotel_id' : ObjectId(session['hotel_id']),
             'facilities' : [ ObjectId(str(facility)) for facility in request.form.getlist("facilities")]
@@ -428,9 +451,9 @@ def add_room():
         if form.validate():
 
             # Save the comment here.
-            flash('Hello ' + form.room_name.data)
+            # flash('Hello ' + form.room_name.data)
             results = mongo.db.rooms.insert_one(data)
-            flash("Success",'success')
+            flash("Added successfully",'success')
             return redirect(url_for('admin.rooms'))
 
         else:
@@ -445,7 +468,7 @@ def add_facility():
     form = AddFacility(request.form)
 
     if request.method == 'POST':
-        print form.facility_name.data
+        # print form.facility_name.data
         data = {
             'facility_name': form.facility_name.data,
             'facility_type':form.facility_type.data,
@@ -455,12 +478,20 @@ def add_facility():
             }
         if form.validate():
             # Save the comment here.
-            flash('Hello ' + form.facility_name.data)
+            # flash('Hello ' + form.facility_name.data)
             results = mongo.db.facility.insert_one(data)
-            flash("Success",'success')
-            redirect(url_for('admin.rooms'))
+            flash("Added successfully",'success')
+            return redirect(url_for('admin.facility'))
 
         else:
             flash('All the form fields are required. ')
 
     return render_template('admin/add_facility.html', form=form, title="Add New Facilty Type")
+
+
+@mod.route('/delete_facility/<string:id>/', methods=['GET'])
+@is_logged_in
+def delete_facility(id):
+    mongo.db.facility.remove({'_id':ObjectId(id)})
+    flash("Facility Deleted successfully",'success')
+    return redirect(url_for('admin.facility'))

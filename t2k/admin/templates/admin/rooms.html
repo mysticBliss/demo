@@ -4,27 +4,13 @@
 {% from 'admin/includes/_formhelpers.html' import render_field %}
 
                         <div class="col-md-9">
+                          {% include 'admin/includes/_message.html' %}
                                   <div class="card">
                                       <div class="card-header">
                                           <h4 class="card-title">{{ title }} </h4>
 
 																					<hr>
-                                          <!-- <a href="{{ url_for('admin.add_room')}}" class="btn btn-warning btn-round btn-fill">Add New Room</a>
-
-                                          <a href="{{ url_for('admin.add_facility')}}" class="btn btn-success btn-round btn-fill">Add New Facility</a>
-                                          <a href="#" class="btn btn-info btn-round btn-fill">Add Room Price Plan</a>
-                                          <a href="#" class="btn btn-default btn-round btn-fill">Add Room Price Plan</a>
-
-                                          <hr> -->
-																					{% with messages = get_flashed_messages() %}
-																	        {% if messages %}
-																	        <ul>
-																	            {% for message in messages %}
-																	            <li>{{ message }}</li>
-																	            {% endfor %}
-																	        </ul>
-																	        {% endif %}
-																	        {% endwith %}
+                                        
 																	     </div>
 																			<!--  Row 1-->
                                       <div class="card-body">
@@ -69,16 +55,7 @@
                                                 <p><a href="{{ url_for('admin.facility')}}" class="btn btn-info btn-round btn-fill">View Facilities</a></p>
                                                 <p><a href="#" class="btn btn-default btn-round btn-fill">Add Room Price Plan</a></p>
 
-                                                <!-- <hr>
-      																					{% with messages = get_flashed_messages() %}
-      																	        {% if messages %}
-      																	        <ul>
-      																	            {% for message in messages %}
-      																	            <li>{{ message }}</li>
-      																	            {% endfor %}
-      																	        </ul>
-      																	        {% endif %}
-      																	        {% endwith %} -->
+
       																	     </div>
 
                                         </div>
