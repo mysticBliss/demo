@@ -23,7 +23,18 @@ https://github.com/saqibmujtaba/demo.git
 gunicorn -b 0.0.0.0:8000 wsgi:app
 
 
-gunicorn -b 0.0.0.0:80  run:app
+gunicorn -w 5 -b 0.0.0.0:80  run:app
 
 git remote add origin https://github.com/saqibmujtaba/demo.git
 git push -u origin master
+
+
+https://maps.googleapis.com/maps/api/staticmap?center=Rajbagh&zoom=13&size=1400x356
+&maptype=roadmap%20
+&markers=color:red%7Clabel:C%7C34.067194,74.82260099999996%20
+&key=AIzaSyBv-Y4k7yxjNUDPPHZD1W5NUz8Cfjx3wq8
+
+
+https://maps.googleapis.com/maps/api/staticmap?center=rajbagh,policestation,srinagar&zoom=14.5&size=1400x356&maptype=roadmap%20
+&markers=color:red%7Clabel:HotelRosePetal%7C34.067194,74.82260099999996%20
+&key=AIzaSyBv-Y4k7yxjNUDPPHZD1W5NUz8Cfjx3wq8
