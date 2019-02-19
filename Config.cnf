@@ -15,8 +15,8 @@ serviceDB = t2k
 
 
 [EMAIL_SETTING]
-MAIL_SERVER = smtp.zoho.com
+MAIL_SERVER = smtp.gmail.com
 MAIL_PORT = 465
-MAIL_USERNAME = reservations@rosepetal.co
-MAIL_PASSWORD = *RESERVATIONS*
-MAIL_DEFAULT_SENDER = reservations@rosepetal.co
+MAIL_USERNAME = noreply@travel2kashmir.com
+MAIL_PASSWORD = mission@travel
+MAIL_DEFAULT_SENDER = noreply@travel2kashmir.com

@@ -20,6 +20,7 @@ def get_commons():
                      { "_id":1, "hotelname": 1,"estd":1,"rating": 1,"long_desc":1,"chain": 1,"hoteladdress":1,"hoteltype": 1,
                      "short_desc":1,"state": 1,"longitude":1,"city_center_distance": 1,
                      "floors":1,"postal_code": 1,"rooms":1,"latitude": 1,"airport_distance":1,"city":1,"country":1,"phno":1,"phno2":1,"email":1,"plus_code":1, "locality":1})
+
     g.hotelname = res['hotelname']
     g.long_desc = res['long_desc']
     g.hoteladdress = res['hoteladdress']
@@ -54,7 +55,7 @@ def get_rooms_facility():
 @mod.route('/')
 def index():
     get_commons()
-    # lst = get_rooms_facility()
+
     rooms = mongo.db.rooms.find({ "hotel_id" : ObjectId('5c013a9d2ccb025bd4d8295a') },{"room_name" : 1,
                                                                         "room_type" : 1,
                                                                         "room_desc" : 1,
@@ -134,22 +135,7 @@ def room_detail(id):
     form = Booking(request.form)
 
     if request.method == 'POST':
-        # print form.check_in.data
-        # print form.check_in.data.strftime("%d%m%Y")
-        # print '=================='
-        data = {
-            'check_in':  form.check_in.data.strftime("%d%m%Y"), #datetime.strptime(request.form['check_in'], '%d-%m-%Y'),
-            'check_out':form.check_out.data.strftime("%d%m%Y") , #datetime.strptime(request.form['check_out'], '%d-%m-%Y'),
-            'adults':form.adults.data,
-            'children':form.children.data,
-            'name_booking': form.name_booking.data,
-            'email_booking':form.email_booking.data,
-            'room_type':form.room_type.data
-            }
-        print data
-        # print datetime.strptime(request.form['check_in'], '%d-%m-%Y')
-        # print type(datetime.strptime(request.form['check_in'], '%d-%m-%Y')) #.data.strftime("%Y%m%d")
-        # print request.form['check_in'].strftime("%Y%m%d")
+
 
         # Variables
         check_in = form.check_in.data.strftime('%d-%m-%Y')
@@ -160,17 +146,17 @@ def room_detail(id):
 
         if form.validate():
             results = mongo.db.booking.insert_one({ "hotel_id" : ObjectId(g.hotel_id) ,
-                                                    'check_in': form.check_in.data.strftime("%d%m%Y"),
-                                                    'check_out': form.check_out.data.strftime("%d%m%Y"),
+                                                    'check_in': form.check_in.data.strftime("%d-%m-%Y"),
+                                                    'check_out': form.check_out.data.strftime("%d-%m-%Y"),
                                                     'adults':form.adults.data,
                                                     'children':form.children.data,
                                                     'name_booking': form.name_booking.data,
                                                     'email_booking':form.email_booking.data,
                                                     'room_type':form.room_type.data,
                                                     'request_date': datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
-            print('inserted')
+            # print('inserted')
             try:
-                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com'], sender='reservations@rosepetal.co')
+                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com','reservations@rosepetal.co'], sender=app.config.get("MAIL_USERNAME"))
                 msg.html = render_template('site/booking.html', hotelname=g.hotelname, name_booking=form.name_booking.data, email_booking=form.email_booking.data, adults=form.adults.data, children=form.children.data, check_in=check_in, check_out=check_out, room_type=form.room_type.data )
                 print msg.html
                 # print msg
@@ -213,33 +199,7 @@ def contactus():
             flash('Please confirm you aren\'t a bot :|','error')
     return render_template('site/contactus.html', form=form,title='Contact Us')
 
-# @mod.route('/booking',methods=['POST'])
-# def booking():
-#     get_commons()
-#     form = Booking(request.form)
-#     if request.method == 'POST':
-#         data = {
-#             'check_in': form.check_in.data,
-#             'check_out':form.check_out.data,
-#             'adults':form.adults.data,
-#             'children':form.children.data,
-#             'name_booking': form.name_booking.data,
-#             'email_booking':form.email_booking.data,
-#             'room_type':form.room_type.data
-#             }
-#         print data
-#         if form.validate():
-#             results = mongo.db.booking.insert_one({ "hotel_id" : ObjectId(g.hotel_id) ,
-#                                                     'check_in': form.check_in.data.strftime("%Y%m%d"),
-#                                                     'check_out':form.check_out.data.strftime("%Y%m%d"),
-#                                                     'adults':form.adults.data,
-#                                                     'children':form.children.data,
-#                                                     'name_booking': form.name_booking.data,
-#                                                     'email_booking':form.email_booking.data,
-#                                                     'room_type':form.room_type.data,
-#                                                     'request_date': datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
-#             return render_template('site/thanks.html')
-#     return render_template('site/room_detail.html')
+
 
 @mod.route('/gallery',methods=['GET','POST'])
 def gallery():
