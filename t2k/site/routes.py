@@ -170,7 +170,7 @@ def room_detail(id):
                                                     'request_date': datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
             print('inserted')
             try:
-                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com'])
+                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com'], sender='reservations@rosepetal.co')
                 msg.html = render_template('site/booking.html', hotelname=g.hotelname, name_booking=form.name_booking.data, email_booking=form.email_booking.data, adults=form.adults.data, children=form.children.data, check_in=check_in, check_out=check_out, room_type=form.room_type.data )
                 print msg.html
                 # print msg
@@ -180,7 +180,8 @@ def room_detail(id):
                 return render_template('site/thanks.html')
             except Exception, e:
                 print 'no mail send'
-                return(str(e))
+                print str(e)
+                # return(str(e))
         else:
             flash('Fill all fields for correct processing','error')
     return render_template('site/room_detail.html', facilities=facilities,rd=rd,form=form,id=id,title=rd['room_name'])
