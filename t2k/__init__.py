@@ -29,15 +29,15 @@ app=Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-mail_settings = {
-    "MAIL_SERVER": cnf.getConfig('EMAIL_SETTING', 'MAIL_SERVER'),
-    "MAIL_PORT": cnf.getConfig('EMAIL_SETTING', 'MAIL_PORT'),
-    "MAIL_USE_TLS": False,
-    "MAIL_USE_SSL": True,
-    "MAIL_DEBUG": True,
-    "MAIL_USERNAME": cnf.getConfig('EMAIL_SETTING', 'MAIL_USERNAME'),
-    "MAIL_PASSWORD": cnf.getConfig('EMAIL_SETTING', 'MAIL_PASSWORD')
-}
+# mail_settings = {
+#     "MAIL_SERVER": cnf.getConfig('EMAIL_SETTING', 'MAIL_SERVER'),
+#     "MAIL_PORT": cnf.getConfig('EMAIL_SETTING', 'MAIL_PORT'),
+#     "MAIL_USE_TLS": False,
+#     "MAIL_USE_SSL": True,
+#     "MAIL_DEBUG": True,
+#     "MAIL_USERNAME": cnf.getConfig('EMAIL_SETTING', 'MAIL_USERNAME'),
+#     "MAIL_PASSWORD": cnf.getConfig('EMAIL_SETTING', 'MAIL_PASSWORD')
+# }
 
 # app.config.update({
 #     "debug": True,
@@ -49,15 +49,15 @@ mail_settings = {
 
 
 
-# app.config['MAIL_SERVER'] = 'smtp.zoho.com'
-# app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'reservations@rosepetal.co'
-# app.config['MAIL_PASSWORD'] = '*RESERVATIONS*'
-# app.config['MAIL_USE_TLS'] = False
-# app.config['MAIL_USE_SSL'] = False
-# # app.config['MAIL_DEBUG'] = True
-# app.config['MAIL_DEFAULT_SENDER'] = 'reservations@rosepetal.co'
-#
+app.config['MAIL_SERVER'] = 'smtp.zoho.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'reservations@rosepetal.co'
+app.config['MAIL_PASSWORD'] = '*RESERVATIONS*'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_DEBUG'] = True
+app.config['MAIL_DEFAULT_SENDER'] = 'reservations@rosepetal.co'
+
 
 
 app.config['RECAPTCHA_SITE_KEY'] = '6Ld4eZEUAAAAADAhpehxpR9qIjNTMjxZiM4jovp0'
