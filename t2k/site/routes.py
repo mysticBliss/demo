@@ -156,7 +156,7 @@ def room_detail(id):
                                                     'request_date': datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
             # print('inserted')
             try:
-                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com','reservations@rosepetal.co'], sender=app.config.get("MAIL_USERNAME"))
+                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com',g.email], sender='noreply@travel2kashmir.com')
                 msg.html = render_template('site/booking.html', hotelname=g.hotelname, name_booking=form.name_booking.data, email_booking=form.email_booking.data, adults=form.adults.data, children=form.children.data, check_in=check_in, check_out=check_out, room_type=form.room_type.data )
                 print msg.html
                 # print msg
