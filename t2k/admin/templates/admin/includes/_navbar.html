@@ -1,11 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
     <div class=" container-fluid  ">
-      <!-- {% for access in hotel_access %} -->
-        <a class="navbar-brand" href="{{ url_for('admin.dashboard' )}}"> {{ session['hotelname'] }}
-           <!-- {{ access['hotelname'] }}  -->
-         </a>
-        <!-- {% endfor %} -->
+
         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar burger-lines"></span>
             <span class="navbar-toggler-bar burger-lines"></span>
@@ -14,15 +10,15 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="dropdown">
-                        <i class="nc-icon nc-palette"></i>
-                        <span class="d-lg-none">Dashboard</span>
+                    <a target="_blank" rel="noopener noreferrer" href="{{ url_for('site.index') }}" title= "Preview Website" class="nav-link" data-toggle="dropdown">
+                        <i class="nc-icon nc-planet"></i>
+                        <span class="d-lg-none">{{ session['hotelname'] }}</span>
                     </a>
                 </li>
-                <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <!-- <li class="dropdown nav-item">
+                    <a href="{{ url_for('site.index') }}" alt= "Preview Website" target="_top" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="nc-icon nc-planet"></i>
-                        <span class="notification">5</span>
+                        <span class="notification">-</span>
                         <span class="d-lg-none">Notification</span>
                     </a>
                     <ul class="dropdown-menu">
@@ -33,9 +29,9 @@
                         <a class="dropdown-item" href="#">Notification 4</a>
                         <a class="dropdown-item" href="#">Another notification</a>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url_for('admin.dashboard') }}" class="nav-link">
                         <i class="nc-icon nc-zoom-split"></i>
                         <span class="d-lg-block">&nbsp;{{ session['hotelname'] }}</span>
                     </a>
@@ -47,17 +43,17 @@
                       <span class="no-icon">{{ session.DName.capitalize() }}</span>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Profile</a>
-                      <a class="dropdown-item" href="#">Setting</a>
+                      <a class="dropdown-item" href="{{ url_for('admin.profile') }}">Profile</a>
+                      <!-- <a class="dropdown-item" href="#">Setting</a> -->
                       <div class="divider"></div>
                       <a class="dropdown-item" href="{{ url_for('admin.logout') }}">Logout</a>
                   </div>
               </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#pablo">
                         <span class="no-icon">Help</span>
                     </a>
-                </li>
+                </li> -->
 
 
             </ul>

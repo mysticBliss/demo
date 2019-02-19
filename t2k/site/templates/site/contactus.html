@@ -3,6 +3,7 @@
 <html>
 <head>
     {% include 'site/includes/_head.html' %}
+    {% from 'admin/includes/_formhelpers.html' import render_field,render_radio_field,render_gmap_field %}
 </head>
 
 <body>
@@ -79,14 +80,16 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
-								<label>First Name</label>
-								<input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter Name">
+								<!-- <label>First Name</label> -->
+                {{render_field(form.first_name,class_="form-control" )}}
+								<!-- <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter Name"> -->
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
-								<label>Last Name</label>
-								<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name">
+								<!-- <label>Last Name</label> -->
+                {{render_field(form.last_name,class_="form-control" )}}
+								<!-- <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name"> -->
 							</div>
 						</div>
 					</div>
@@ -94,32 +97,43 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
-								<label>Email</label>
-								<input type="email" id="email" name="email" class="form-control" placeholder="Enter Email">
+								<!-- <label>Email</label> -->
+                {{render_field(form.email,class_="form-control" )}}
+								<!-- <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"> -->
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
-								<label>Phone</label>
-								<input type="text" id="phone" name="phone" class="form-control" placeholder="Enter Phone number">
+								<!-- <label>Phone</label> -->
+                {{render_field(form.phone,class_="form-control" )}}
+								<!-- <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter Phone number"> -->
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Message</label>
-								<textarea id="message" name="message" class="form-control" placeholder="Write your message" style="height:150px;"></textarea>
+								<!-- <label>Message</label> -->
+                {{render_field(form.message,class_="form-control" )}}
+								<!-- <textarea id="message" name="message" class="form-control" placeholder="Write your message" style="height:150px;"></textarea> -->
+							</div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+                <label>Human verification</label>
+                  {{ recaptcha }}
 							</div>
 						</div>
 					</div>
 					<div class="row add_bottom_30">
+
 						<div class="col-md-6">
-                        	<!-- <div class="form-group">
-                                <label>Human verification</label>
-                                <input type="text" id="verify_contact" class=" form-control add_bottom_30" placeholder="Are you human? 3 + 1 =">
-                            </div> -->
-							<input type="submit" value="Submit" class="btn_1" id="submit-contact">
+                        	                            <div class="form-group">
+                                <input type="submit" value="Submit" class="btn_1" id="submit-contact">
+                              </div>
+
 						</div>
 					</div>
 				</form>
@@ -130,7 +144,7 @@
     </div><!-- End Container -->
 
       <div id="map">
-        
+
 
       </div><!-- End map -->
 

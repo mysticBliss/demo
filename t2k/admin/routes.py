@@ -1,7 +1,7 @@
-from flask import current_app,Blueprint,render_template,request, flash,redirect,url_for,session
+from flask import current_app,Blueprint,render_template,request, flash,redirect,url_for,session,g
 from passlib.hash import sha256_crypt
 import datetime
-from t2k.admin.forms import RegisterHotel
+from t2k.admin.forms import RegisterHotel,User
 from t2k import mongo
 from t2k import csrf
 from functools import wraps
@@ -40,8 +40,9 @@ def index():
 def login():
     if request.method == 'POST':
         try:
-            results = mongo.db.users.find_one({ "username": request.form['username'] },{ "username": 1, "password" : 1, "DName":1,"access":1})
-            print results
+            results = mongo.db.users.find_one({ "username": request.form['username'] },{ "username": 1, "password" : 1, "DName":1,"access":1, "_id":1})
+
+            #print results
             if results is None:
                 flash(u'Username doesn\'t exist', 'error')
             else:
@@ -255,6 +256,9 @@ def rooms():
     # if request.method == 'POST':
     #     print form.roomname.data
     return render_template('admin/rooms.html', rooms=rooms, title="Room Details")
+
+
+
 
 @mod.route('/facility',methods=['GET','POST'])
 @is_logged_in
@@ -495,3 +499,108 @@ def delete_facility(id):
     mongo.db.facility.remove({'_id':ObjectId(id)})
     flash("Facility Deleted successfully",'success')
     return redirect(url_for('admin.facility'))
+
+
+
+@mod.route('/leads',methods=['GET','POST'])
+@is_logged_in
+def leads():
+    # from t2k.admin.forms import AddRoom
+    # form = AddRoom(request.form)
+    leads = mongo.db.booking.find({ "hotel_id" : ObjectId(str(session['hotel_id'])) },{"name_booking" : 1,
+                                                                        "email_booking" : 1,
+                                                                        "check_in" : 1,
+                                                                        "check_out" : 1,
+                                                                        "room_capacity" : 1,
+                                                                        "adults" : 1,
+                                                                        "children" : 1,
+                                                                        "request_date" : 1,
+                                                                        "room_type":1,  "_id": 1})
+
+
+
+    if leads == None:
+        flash("No Bookings", 'error')
+
+    return render_template('admin/leads.html', leads=leads, title="Lead Details")
+
+
+@mod.route('/RemoveLead/<string:id>/', methods=['GET'])
+@is_logged_in
+def RemoveLead(id):
+    mongo.db.booking.remove({'_id':ObjectId(id)})
+    flash("Lead Deleted successfully",'success')
+    return redirect(url_for('admin.leads'))
+
+
+@mod.route('/profile',methods=['GET','POST'])
+@is_logged_in
+def profile():
+    form = User(request.form)
+
+    if request.method == 'GET':
+
+        users = mongo.db.users.find_one({ "username": session['username'] },{ "DName": 1,"FName": 1,"MName":1,"LName": 1,"username":1,"_id":1})
+
+        form.DName.data = users['DName']
+        form.FName.data= users['FName']
+        form.MName.data= users['MName']
+        form.LName.data = users['LName']
+        form.username.data = users['username']
+
+
+
+    if request.method == 'POST':
+        data = {
+            'DName': form.DName.data,
+            'FName':form.FName.data,
+            'MName':form.MName.data,
+            'LName':form.LName.data,
+            'username':form.username.data,
+            'password':form.password.data
+            }
+        print data
+        if form.validate():
+
+
+            result = mongo.db.users.find_one({ "username": session['username'] }, {"_id":1, "register_date":1, "last_login_date":1, "access":1})
+
+            users = mongo.db.users.save({ "_id": result["_id"]
+                                            ,'DName': form.DName.data
+                                            ,'FName':form.FName.data
+                                            ,'MName':form.MName.data
+                                            ,'LName':form.LName.data
+                                            ,'username':form.username.data
+                                            ,'password':sha256_crypt.hash(form.password.data)
+                                            ,'register_date':result["register_date"]
+                                            ,'last_login_date':result["last_login_date"]
+                                            ,'access': result["access"]
+                                            })
+
+            flash('Updated details for User ' + str(session['username']).upper(),'success')
+        else:
+            flash('Failed to update details for user ' + str(session['username']),'error')
+
+    return render_template('admin/profile.html', form=form, title="Profile Details")
+
+
+@mod.route('/settings',methods=['GET','POST'])
+@is_logged_in
+def settings():
+
+    # settings = mongo.db.settings.find({ "hotel_id" : ObjectId(str(session['hotel_id'])) },{"name_booking" : 1,
+    #                                                                     "email_booking" : 1,
+    #                                                                     "check_in" : 1,
+    #                                                                     "check_out" : 1,
+    #                                                                     "room_capacity" : 1,
+    #                                                                     "adults" : 1,
+    #                                                                     "children" : 1,
+    #                                                                     "request_date" : 1,
+    #                                                                     "room_type":1,  "_id": 1})
+    #
+
+
+    if leads == None:
+        flash("No Bookings", 'error')
+
+    return render_template('admin/settings.html', leads=leads, title="Lead Details")

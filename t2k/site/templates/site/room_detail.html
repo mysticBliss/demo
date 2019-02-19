@@ -3,6 +3,7 @@
 <html>
 <head>
     {% include 'site/includes/_head.html' %}
+    {% from 'admin/includes/_formhelpers.html' import render_field,render_radio_field,render_gmap_field %}
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/DateTimePicker.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/owl.carousel.min.css') }}">
@@ -231,7 +232,7 @@
                             <div class="alert alert-danger alert-dismissible">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 
-                                <strong>Oops!</strong> {{ message }}...
+                                <strong>Ah!</strong> {{ message }}...
                             </div>
 
                             {% endfor %}
@@ -244,38 +245,43 @@
                     	<div class="row">
                         	<div class="col-md-6 col-sm-6">
                             	<div class="form-group">
-                                	<label>Arrival date</label>
-                            	   	<input class="startDate1 form-control datepick" type="text" data-field="date" data-startend="start" data-startendelem=".endDate1" readonly placeholder="Arrival" id="check_in" name="check_in">
-                                   <span class="input-icon"><i class="icon-calendar-7"></i></span>
+                                	<!-- <label>Arrival date</label> -->
+
+                                  {{render_field(form.check_in ,class_="form-control")}}
+                            	   	<!-- <input class="startDate1 form-control datepick" type="text" data-field="date" data-startend="start" data-startendelem=".endDate1" readonly placeholder="Arrival" id="check_in" name="check_in"> -->
+                                   <!-- <span class="input-icon"><i class="icon-calendar-7"></i></span> -->
                                    </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                             	<div class="form-group">
-                                	<label>Departure date</label>
-                            	   <input class="endDate1 form-control datepick" type="text" data-field="date" data-startend="end" data-startendelem=".startDate1" readonly placeholder="Departure" id="check_out" name="check_out">
-                                   <span class="input-icon"><i class="icon-calendar-7"></i></span>
+                                	<!-- <label>Departure date</label> -->
+                                  {{render_field(form.check_out,class_="form-control" )}}
+                            	   <!-- <input class="endDate1 form-control datepick" type="text" data-field="date" data-startend="end" data-startendelem=".startDate1" readonly placeholder="Departure" id="check_out" name="check_out"> -->
+                                   <!-- <span class="input-icon"><i class="icon-calendar-7"></i></span> -->
                                </div>
                             </div>
                         </div><!-- End row -->
                         <div class="row">
                         	<div class="col-md-6 col-sm-6 col-xs-6">
                             	<div class="form-group">
-                                <label>Adults</label>
-                            	   <div class="qty-buttons">
+                                <!-- <label>Adults</label> -->
+                            	   <!-- <div class="qty-buttons">
                                         <input type="button" value="-" class="qtyminus" name="adults">
                                         <input type="text" name="adults" id="adults" value="" class="qty form-control" placeholder="0">
                                         <input type="button" value="+" class="qtyplus" name="adults">
-                                    </div>
+                                    </div> -->
+                                      {{render_field(form.adults,class_="form-control" )}}
                                    </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
                             	<div class="form-group">
-                                <label>Children</label>
-                            	    <div class="qty-buttons">
+                                <!-- <label>Children</label> -->
+                                {{render_field(form.children,class_="form-control" )}}
+                            	    <!-- <div class="qty-buttons">
                                         <input type="button" value="-" class="qtyminus" name="children">
                                         <input type="text" name="children" id="children"  value="" class="qty form-control" placeholder="0">
                                         <input type="button" value="+" class="qtyplus" name="children">
-                                    </div>
+                                    </div> -->
                                </div>
                             </div>
                         </div><!-- End row -->
@@ -283,18 +289,30 @@
 
                               <div class="col-md-12 col-sm-6">
                                    <div class="form-group">
-                                	<label>Name</label>
-                            	 		<input type="text" class="form-control" name="name_booking" id="name_booking" placeholder="Name and Last name">
+                                	<!-- <label>Name</label> -->
+                            	 		<!-- <input type="text" class="form-control" name="name_booking" id="name_booking" placeholder="Name and Last name"> -->
+                                  {{render_field(form.name_booking,class_="form-control" )}}
                                    </div>
                                    </div>
                                    <div class="col-md-12 col-sm-6">
                                    <div class="form-group">
-                                	<label>Email</label>
-                            	 		<input type="text" class="form-control" name="email_booking" id="email_booking" placeholder="Your email">
+                                	<!-- <label>Email</label> -->
+                            	 		<!-- <input type="text" class="form-control" name="email_booking" id="email_booking" placeholder="Your email"> -->
+                                  {{render_field(form.email_booking,class_="form-control" )}}
+
                                    </div>
                                    </div>
-                                   <div class="col-md-12 col-sm-12">
+                                   <!-- <div class="col-md-12 col-sm-12">
+
                                    <div class="form-group">
+                                     {{ recaptcha }}
+
+                                   </div>
+                                   </div> -->
+                                   <div class="col-md-12 col-sm-12">
+
+                                   <div class="form-group">
+
                                    <input type="submit" value="Book now" class="btn_full" id="submit-booking">
                                    </div>
                                    </div>
@@ -472,6 +490,9 @@
 </script>
 <script type="text/javascript" src="{{ url_for('.static', filename='js/DateTimePicker.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('.static', filename='js/DateTimePicker.js') }}"></script>
-<script type="text/javascript">$("#dtBox").DateTimePicker();</script>
+<script type="text/javascript">
+// $("#dtBox").DateTimePicker();
+
+</script>
 </body>
 </html>

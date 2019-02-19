@@ -1,0 +1,42 @@
+<p>Hello {{ hotelname }},</p>
+
+<p>Please confirm my booking as: </p>
+
+
+ <table style="height: 201px;" width="353">
+ <tbody>
+ <tr>
+ <td style="width: 176px;">Name</td>
+ <td style="width: 176px;">{{ name_booking }}</td>
+ </tr>
+ <tr>
+ <td style="width: 176px;">Email</td>
+ <td style="width: 176px;">{{ email_booking }}</td>
+ </tr>
+ <tr>
+ <td style="width: 176px;">Adults</td>
+ <td style="width: 176px;">{{ adults }}</td>
+ </tr>
+ <tr>
+ <td style="width: 176px;">Children</td>
+ <td style="width: 176px;">{{ children }}</td>
+ </tr>
+ <tr>
+ <td style="width: 176px;">Check In</td>
+ <td style="width: 176px;">{{ check_in }}</td>
+ </tr>
+ <tr>
+ <td style="width: 176px;">Check Out</td>
+ <td style="width: 176px;">{{ check_out }}</td>
+ </tr>
+ <tr>
+ <td style="width: 176px;">Room Preference</td>
+ <td style="width: 176px;">{{ room_type.upper() }}</td>
+ </tr>
+ </tbody>
+ </table>
+
+
+<p>Best, Regards</p>
+<p> {{ name_booking }}</p>
+<p>{{ email_booking }}</p>

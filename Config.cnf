@@ -14,8 +14,9 @@ servicePassword = 6QqdEn
 serviceDB = t2k
 
 
-[email]
+[EMAIL_SETTING]
 MAIL_SERVER = smtp.zoho.com
 MAIL_PORT = 465
 MAIL_USERNAME = reservations@rosepetal.co
-MAIL_PASSWORD = s
+MAIL_PASSWORD = *RESERVATIONS*
+MAIL_DEFAULT_SENDER = reservations@rosepetal.co

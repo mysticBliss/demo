@@ -56,3 +56,47 @@ class RegisterHotel(FlaskForm):
     phno2 =IntegerField("Phone No 2")
     email=EmailField("Email ID",[validators.Required("Please enter Email ID")])
     submit = SubmitField("Send")
+
+
+def valid_password(form, field):
+    """
+    Function to check for validity of a password
+
+    :param form: The form which is being passed in
+    :type form: Form
+    :param field: The data value for the 'password' inserted by User
+    :type field : PasswordField
+    """
+    if len(field.data) == 0:
+        raise ValidationError('password cannot be empty')
+    if len(field.data) < 5 or len(field.data) > 50:
+        raise ValidationError('Password needs to be between 5 and 50 '
+                              'characters long (you entered %s characters'
+                              % len(field.data))
+
+def validate_new_password_repeat(form, field):
+        """
+        Validates new password repeat and checks if it matches 'new_password'
+
+        :param form: The form which is being passed in
+        :type form: AccountForm
+        :param field: The data value for the 'password' entered by User
+        :type field : PasswordField
+        """
+        if form.username is not None:
+            # username form is present, so it's optional
+            if len(field.data) == 0 and len(form.password.data) == 0:
+                raise ValidationError('password is Mandatory')
+
+        if field.data != form.password.data:
+            raise ValidationError('The password needs to match the new '
+                                  'password')
+
+class User(FlaskForm):
+    DName=TextField("Display Name",[validators.Required(" Display Name is Mandatory")])
+    FName=TextField("First Name",[validators.Required(" First Name is Mandatory")])
+    MName=TextField("Middle Name")
+    LName=TextField("Last Name",[validators.Required(" Last Name is Mandatory")])
+    username=TextField("Username",[validators.Required("Username is Mandatory")])
+    password=PasswordField("Password ", [validators.Required(), valid_password])
+    repeat_password=PasswordField("Password ", [validators.Required(), validate_new_password_repeat])

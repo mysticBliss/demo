@@ -2,15 +2,17 @@
 
 {% block body %}
 {% from 'admin/includes/_formhelpers.html' import render_field %}
-
+<div class="col-md-12">
+                                  {% include 'admin/includes/_message.html' %}
+</div>
                         <div class="col-md-9">
-                          {% include 'admin/includes/_message.html' %}
+                          
                                   <div class="card">
                                       <div class="card-header">
                                           <h4 class="card-title">{{ title }} </h4>
 
 																					<hr>
-                                        
+
 																	     </div>
 																			<!--  Row 1-->
                                       <div class="card-body">

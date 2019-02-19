@@ -1,8 +1,10 @@
 from flask import Blueprint,render_template,g,request,redirect,url_for,flash
 from t2k import mongo
-import datetime
+from datetime import datetime
 from bson import json_util, ObjectId
 from t2k.site.forms import ContactUs,Booking
+from t2k import mail, Message
+from t2k import recaptcha
 import json
 
 mod=Blueprint('site', __name__,
@@ -26,6 +28,8 @@ def get_commons():
     g.email=res['email']
     g.phno=phonenumbers.format_number(phonenumbers.parse(str(res['phno']), 'IN'), phonenumbers.PhoneNumberFormat.INTERNATIONAL)
     g.phno2=phonenumbers.format_number(phonenumbers.parse(str(res['phno2']), 'IN'), phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+
+
 def get_rooms_facility():
     rooms = mongo.db.rooms.find({ "hotel_id" : ObjectId('5c013a9d2ccb025bd4d8295a') },{"room_name" : 1,
                                                                         "room_type" : 1,
@@ -41,6 +45,11 @@ def get_rooms_facility():
         rlist.append(x)
 
     return g.rlist
+
+
+# def send_mail(to, m):
+
+
 
 @mod.route('/')
 def index():
@@ -123,30 +132,55 @@ def room_detail(id):
 
 
     form = Booking(request.form)
-    data = {
-        'check_in': form.check_in.data,
-        'check_out':form.check_out.data,
-        'adults':form.adults.data,
-        'children':form.children.data,
-        'name_booking': form.name_booking.data,
-        'email_booking':form.email_booking.data,
-        'room_type':form.room_type.data
-        }
-    print data
+
     if request.method == 'POST':
-        print
+        # print form.check_in.data
+        # print form.check_in.data.strftime("%d%m%Y")
+        # print '=================='
+        data = {
+            'check_in':  form.check_in.data.strftime("%d%m%Y"), #datetime.strptime(request.form['check_in'], '%d-%m-%Y'),
+            'check_out':form.check_out.data.strftime("%d%m%Y") , #datetime.strptime(request.form['check_out'], '%d-%m-%Y'),
+            'adults':form.adults.data,
+            'children':form.children.data,
+            'name_booking': form.name_booking.data,
+            'email_booking':form.email_booking.data,
+            'room_type':form.room_type.data
+            }
+        print data
+        # print datetime.strptime(request.form['check_in'], '%d-%m-%Y')
+        # print type(datetime.strptime(request.form['check_in'], '%d-%m-%Y')) #.data.strftime("%Y%m%d")
+        # print request.form['check_in'].strftime("%Y%m%d")
+
+        # Variables
+        check_in = form.check_in.data.strftime('%d-%m-%Y')
+        check_out = form.check_out.data.strftime('%d-%m-%Y')
+
+
+
+
         if form.validate():
             results = mongo.db.booking.insert_one({ "hotel_id" : ObjectId(g.hotel_id) ,
-                                                    'check_in': request.form['check_in'].strftime("%Y%m%d"),
-                                                    'check_out':request.form['check_out'].strftime("%Y%m%d"),
+                                                    'check_in': form.check_in.data.strftime("%d%m%Y"),
+                                                    'check_out': form.check_out.data.strftime("%d%m%Y"),
                                                     'adults':form.adults.data,
                                                     'children':form.children.data,
                                                     'name_booking': form.name_booking.data,
                                                     'email_booking':form.email_booking.data,
                                                     'room_type':form.room_type.data,
-                                                    'request_date': datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
+                                                    'request_date': datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
+            print('inserted')
+            try:
+                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com'])
+                msg.html = render_template('site/booking.html', hotelname=g.hotelname, name_booking=form.name_booking.data, email_booking=form.email_booking.data, adults=form.adults.data, children=form.children.data, check_in=check_in, check_out=check_out, room_type=form.room_type.data )
+                print msg.html
+                # print msg
 
-            return render_template('site/thanks.html')
+                mail.send(msg)
+                print 'sent'
+                return render_template('site/thanks.html')
+            except Exception, e:
+                print 'no mail send'
+                return(str(e))
         else:
             flash('Fill all fields for correct processing','error')
     return render_template('site/room_detail.html', facilities=facilities,rd=rd,form=form,id=id,title=rd['room_name'])
@@ -168,11 +202,14 @@ def contactus():
             'message': form.message.data
             }
         print data
-        if form.validate():
-            results = mongo.db.leads.insert_one({ "hotel_id" : ObjectId(g.hotel_id) , 'first_name': form.first_name.data, 'last_name':form.last_name.data,'email':form.email.data,'phone':form.phone.data,'message': form.message.data,'requestdate':str(datetime.datetime.now()) })
-            return render_template('site/thanks.html')
+        if recaptcha.verify():
+            if form.validate():
+                results = mongo.db.leads.insert_one({ "hotel_id" : ObjectId(g.hotel_id) , 'first_name': form.first_name.data, 'last_name':form.last_name.data,'email':form.email.data,'phone':form.phone.data,'message': form.message.data,'requestdate':str(datetime.datetime.now()) })
+                return render_template('site/thanks.html')
+            else:
+                flash('Fill all fields for correct processing','error')
         else:
-            flash('Fill all fields for correct processing','error')
+            flash('Please confirm you aren\'t a bot :|','error')
     return render_template('site/contactus.html', form=form,title='Contact Us')
 
 # @mod.route('/booking',methods=['POST'])
@@ -212,11 +249,6 @@ def gallery():
 def thanks():
     get_commons()
     return render_template('site/thanks.html', title='Thanks')
-
-
-
-
-
 
 
 # @mod.route('/', subdomain="<user>", defaults={'path':''})
