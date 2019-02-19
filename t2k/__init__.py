@@ -37,7 +37,7 @@ mail_settings = {
     "MAIL_DEBUG": True,
     "MAIL_USERNAME": cnf.getConfig('EMAIL_SETTING', 'MAIL_USERNAME'),
     "MAIL_PASSWORD": cnf.getConfig('EMAIL_SETTING', 'MAIL_PASSWORD'),
-    "MAIL_DEFAULT_SENDER" = 'reservations@rosepetal.co'
+    "MAIL_DEFAULT_SENDER" : 'reservations@rosepetal.co'
 }
 
 # app.config.update({
