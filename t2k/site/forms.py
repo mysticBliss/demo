@@ -9,7 +9,7 @@ class ContactUs(FlaskForm):
     email = EmailField("Email ",[validators.Required("Email is Mandatory!")])
     phone=TelField("Phone",[validators.Required("Phone is Mandatory")])
     message = TextField("Message")
-    recaptcha = RecaptchaField()
+    # recaptcha = RecaptchaField()
     submit = SubmitField("Send")
 
 # class Subscriber(FlaskForm):
