@@ -15,7 +15,7 @@ serviceDB = t2k
 
 
 [EMAIL_SETTING]
-MAIL_SERVER = smtp.gmail.com
+MAIL_SERVER =smtp.gmail.com
 MAIL_PORT = 465
 MAIL_USERNAME = noreply@travel2kashmir.com
 MAIL_PASSWORD = mission@travel

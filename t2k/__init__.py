@@ -34,10 +34,8 @@ mail_settings = {
     "MAIL_PORT": cnf.getConfig('EMAIL_SETTING', 'MAIL_PORT'),
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-    "MAIL_DEBUG": True,
     "MAIL_USERNAME": cnf.getConfig('EMAIL_SETTING', 'MAIL_USERNAME'),
     "MAIL_PASSWORD": cnf.getConfig('EMAIL_SETTING', 'MAIL_PASSWORD'),
-    "MAIL_DEFAULT_SENDER" : 'reservations@rosepetal.co'
 }
 
 # app.config.update({
