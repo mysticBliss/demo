@@ -10,8 +10,9 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a target="_blank" rel="noopener noreferrer" href="{{ url_for('site.index') }}" title= "Preview Website" class="nav-link" data-toggle="dropdown">
-                        <i class="nc-icon nc-planet"></i>
+                  <a href="{{ url_for('site.index') }}" target="_blank"  title= "Preview Website" class="nav-link">
+                    <!-- <a href="{{ url_for('site.index') }}" target="_blank"  title= "Preview Website" class="nav-link" data-toggle="dropdown"> -->
+                      <i class="nc-icon nc-planet">  </i>
                         <span class="d-lg-none">{{ session['hotelname'] }}</span>
                     </a>
                 </li>
