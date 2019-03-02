@@ -16,27 +16,31 @@
                                       <div class="card-body">
                                         <table class="table table-hover">
                                           <thead>
-                                          <th>First Name</th>
-                                          <th>Last Name</th>
+                                          <th>Name</th>
                                           <th>Email</th>
-                                          <th>Phone</th>
-                                          <th>Message</th>
-
-                                          <th ></th>
+                                          <th>Check In</th>
+                                          <th>Check Out</th>
+                                          <th>Adults</th>
+                                          <th>Children</th>
+                                          <th >Requested Room</th>
+                                          <th >Requested Date</th>
+                                          <!-- <th ></th> -->
                                           <th ></th>
                                           </thead>
                                           <tbody>
-                                          {% for lead in leads %}
+                                          {% for booking in bookings %}
                                           <tr>
-                                            <td>{{ lead.c_fname }}</td>
-                                            <td>{{ lead.c_lname }}</td>
-                                            <td>{{ lead.c_email }}</td>
-                                            <td>{{ lead.c_phone }}</td>
-                                            <td>{{ lead.c_message }}</td>
-
+                                            <td>{{ booking.name_booking }}</td>
+                                            <td>{{ booking.email_booking }}</td>
+                                            <td>{{ booking.check_in }}</td>
+                                            <td>{{ booking.check_out }}</td>
+                                            <td>{{ booking.adults }}  </td>
+                                            <td>{{ booking.children }}  </td>
+                                            <td>{{ booking.room_type }}  </td>
+                                            <td>{{ booking.request_date }}  </td>
 
                                             <!-- <td><a href="#" class="btn btn-primary btn-fill pullright">Send</a></td> -->
-                                            <td><a href="RemoveLead/{{ lead._id }}" class="btn btn-danger btn-fill pullright">Delete Lead</a></td>
+                                            <td><a href="RemoveBooking/{{ booking._id }}" class="btn btn-danger btn-fill pullright">Remove Booking</a></td>
                                           </tr>
                                           {% endfor %}
                                         </tbody>

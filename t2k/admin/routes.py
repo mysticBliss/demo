@@ -502,12 +502,12 @@ def delete_facility(id):
 
 
 
-@mod.route('/leads',methods=['GET','POST'])
+@mod.route('/bookings',methods=['GET','POST'])
 @is_logged_in
-def leads():
+def bookings():
     # from t2k.admin.forms import AddRoom
     # form = AddRoom(request.form)
-    leads = mongo.db.booking.find({ "hotel_id" : ObjectId(str(session['hotel_id'])) },{"name_booking" : 1,
+    bookings = mongo.db.booking.find({ "hotel_id" : ObjectId(str(session['hotel_id'])) },{"name_booking" : 1,
                                                                         "email_booking" : 1,
                                                                         "check_in" : 1,
                                                                         "check_out" : 1,
@@ -522,15 +522,43 @@ def leads():
     if leads == None:
         flash("No Bookings", 'error')
 
-    return render_template('admin/leads.html', leads=leads, title="Lead Details")
+    return render_template('admin/bookings.html', bookings=bookings, title="Booking Requests")
+
+
+@mod.route('/RemoveBooking/<string:id>/', methods=['GET'])
+@is_logged_in
+def RemoveBooking(id):
+    mongo.db.booking.remove({'_id':ObjectId(id)})
+    flash("Booking Deleted successfully",'success')
+    return redirect(url_for('admin.bookings'))
+
+
+@mod.route('/leads',methods=['GET','POST'])
+@is_logged_in
+def leads():
+    # from t2k.admin.forms import AddRoom
+    # form = AddRoom(request.form)
+    leads = mongo.db.leads.find({ "hotel_id" : ObjectId(str(session['hotel_id'])) },{"c_fname" : 1,
+                                                                        "c_lname" : 1,
+                                                                        "c_email" : 1,
+                                                                        "c_phone" : 1,
+                                                                        "c_message" : 1,  "_id": 1})
+
+
+
+    if leads == None:
+        flash("No Leads", 'error')
+
+    return render_template('admin/leads.html', leads=leads, title="Leads Details")
 
 
 @mod.route('/RemoveLead/<string:id>/', methods=['GET'])
 @is_logged_in
 def RemoveLead(id):
-    mongo.db.booking.remove({'_id':ObjectId(id)})
+    mongo.db.leads.remove({'_id':ObjectId(id)})
     flash("Lead Deleted successfully",'success')
     return redirect(url_for('admin.leads'))
+
 
 
 @mod.route('/profile',methods=['GET','POST'])

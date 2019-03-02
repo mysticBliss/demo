@@ -154,15 +154,14 @@ def room_detail(id):
                                                     'email_booking':form.email_booking.data,
                                                     'room_type':form.room_type.data,
                                                     'request_date': datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
-            # print('inserted')
+
             try:
-                msg =Message('Interested for Booking', recipients=['saqib.mj@gmail.com','form.email_booking.data',g.email], sender='noreply@travel2kashmir.com')
+                msg =Message('Interested for Booking', recipients=[form.email_booking.data,str(g.email)], sender="noreply@travel2kashmir.com")
                 msg.html = render_template('site/booking.html', hotelname=g.hotelname, name_booking=form.name_booking.data, email_booking=form.email_booking.data, adults=form.adults.data, children=form.children.data, check_in=check_in, check_out=check_out, room_type=form.room_type.data )
                 print msg.html
-                # print msg
 
                 mail.send(msg)
-                print 'sent'
+                # print 'sent'
                 return render_template('site/thanks.html')
             except Exception, e:
                 print 'no mail send'
@@ -189,14 +188,26 @@ def contactus():
             'message': form.message.data
             }
         print data
-        if recaptcha.verify():
-            if form.validate():
-                results = mongo.db.leads.insert_one({ "hotel_id" : ObjectId(g.hotel_id) , 'first_name': form.first_name.data, 'last_name':form.last_name.data,'email':form.email.data,'phone':form.phone.data,'message': form.message.data,'requestdate':str(datetime.datetime.now()) })
+        # if recaptcha.verify():
+        if form.validate():
+            results = mongo.db.leads.insert_one({ "hotel_id" : ObjectId(g.hotel_id) , 'c_fname': form.first_name.data,
+                                                  'c_lname':form.last_name.data,'c_email':form.email.data,'c_phone':form.phone.data,
+                                                  'c_message': form.message.data,'c_requestdate':datetime.now().strftime("%d-%m-%Y %H:%M:%S") })
+            try:
+                msg =Message('Contact User', recipients=[form.email.data,str(g.email)], sender="noreply@travel2kashmir.com")
+                msg.html = render_template('site/lead.html', hotelname=g.hotelname, fname=form.first_name.data, lname=form.last_name.data, email=form.email.data, phone=form.phone.data, message=form.message.data)
+                print msg.html
+
+                mail.send(msg)
+                # print 'sent'
                 return render_template('site/thanks.html')
-            else:
-                flash('Fill all fields for correct processing','error')
+            except Exception, e:
+                print 'no mail send'
+                print str(e)
         else:
-            flash('Please confirm you aren\'t a bot :|','error')
+            flash('Fill all fields for correct processing','error')
+        # else:
+        #     flash('Please confirm you aren\'t a bot :|','error')
     return render_template('site/contactus.html', form=form,title='Contact Us')
 
 
