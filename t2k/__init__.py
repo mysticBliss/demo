@@ -35,7 +35,7 @@ mail_settings = {
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
     "MAIL_USERNAME": 'noreply@travel2kashmir.com',
-    "MAIL_PASSWORD": '8vZP8bvZ7u'
+    "MAIL_PASSWORD": 'passwordhere'
 }
 
 app.config['RECAPTCHA_SITE_KEY'] = cnf.getConfig('RECAPTCHA', 'RECAPTCHA_SITE_KEY')
